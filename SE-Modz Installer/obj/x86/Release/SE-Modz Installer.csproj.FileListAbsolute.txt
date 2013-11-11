@@ -14,3 +14,6 @@ C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz 
 C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.TrustInfo.xml
 C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.exe.manifest
 C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.application
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\bin\Release\SE-Modz Installer.exe.config
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.exe
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.pdb

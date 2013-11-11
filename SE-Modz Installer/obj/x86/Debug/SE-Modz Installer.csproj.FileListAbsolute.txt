@@ -24,3 +24,18 @@ C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz 
 C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.TrustInfo.xml
 C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe.manifest
 C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.application
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe.config
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe.manifest
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.application
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.pdb
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.frmMain.resources
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.Properties.Resources.resources
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.TrustInfo.xml
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe.manifest
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.application
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe
+C:\Users\Fattay\Desktop\SE-Modz-Installer\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.pdb
