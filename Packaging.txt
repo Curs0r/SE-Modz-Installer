@@ -21,5 +21,5 @@ Copy your block's <Definition> from CubeBlocks.sbc and paste inside the <Definit
 Save your Definition.xml file.
 
 Compress your block's folder as a zip archive. Test it by launching SE-Modz Installer and dragging
-t to the colored area. If your block fails to install, revisit the previous steps or come to
+it to the colored area. If your block fails to install, revisit the previous steps or come to
 http://se-modz.forumotion.com/ for help.
