@@ -1,0 +1,16 @@
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Release\SE-Modz Installer.exe
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Release\SE-Modz Installer.pdb
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Release\Ionic.Zip.dll
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\ResolveAssemblyReference.cache
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE_Modz_Installer.frmMain.resources
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE_Modz_Installer.Properties.Resources.resources
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\GenerateResource.read.1.tlog
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\GenerateResource.write.1.tlog
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.exe
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.pdb
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Release\SE-Modz Installer.exe.config
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Release\SE-Modz Installer.exe.manifest
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Release\SE-Modz Installer.application
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.TrustInfo.xml
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.exe.manifest
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Release\SE-Modz Installer.application

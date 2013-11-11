@@ -1,0 +1,26 @@
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\bin\Debug\SE-Modz Installer.pdb
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.Form1.resources
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.Properties.Resources.resources
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.pdb
+C:\Users\Fattay\AppData\Local\Temporary Projects\SE-Modz Installer\bin\Debug\Ionic.Zip.dll
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.pdb
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Debug\SE-Modz Installer.pdb
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Debug\Ionic.Zip.dll
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\ResolveAssemblyReference.cache
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.frmMain.resources
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.Properties.Resources.resources
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\GenerateResource.read.1.tlog
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\GenerateResource.write.1.tlog
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe.config
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe.manifest
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\bin\Debug\SE-Modz Installer.application
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.TrustInfo.xml
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe.manifest
+C:\Users\Fattay\Documents\Visual Studio 2010\Projects\SE-Modz Installer\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.application
