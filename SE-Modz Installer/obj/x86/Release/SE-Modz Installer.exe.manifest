@@ -55,14 +55,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SE-Modz Installer.exe" size="557056">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SE-Modz Installer.exe" size="770048">
       <assemblyIdentity name="SE-Modz Installer" version="1.0.0.0" publicKeyToken="1C760BB9AA39D121" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>bjpthuyVmnT5XZK31P++92pVXs0=</dsig:DigestValue>
+        <dsig:DigestValue>Od3Xy0Wa2jxF8r3aUULtuKUq6wA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

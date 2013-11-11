@@ -13,6 +13,7 @@ namespace SE_Modz_Installer
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "Software\\SE-Modz Installer";
         const string keyName = userRoot + "\\" + subkey;
+        const string strForumURL = "http://se-modz.forumotion.com/";
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
@@ -23,6 +24,11 @@ namespace SE_Modz_Installer
             System.IO.File.Move("C:\\Temp\\" + ze.Replace("/", "\\"), f);
         }
 
+        private void LaunchForum()
+        {
+            System.Diagnostics.Process.Start(strForumURL);
+        }
+
         public frmMain()
         {
             InitializeComponent();
@@ -31,7 +37,7 @@ namespace SE_Modz_Installer
             if (strGamePath != "Click here to locate your game directory")
             {
                 pnlDrop.Enabled = true;
-                pnlDrop.BackColor = Color.ForestGreen;
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Drag_Zip_File_Here;
                 lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
             }
         }
@@ -39,7 +45,6 @@ namespace SE_Modz_Installer
         private void pnlDrop_DragEnter(object sender, DragEventArgs e)
         {
             lbxContents.Items.Clear();
-            pnlDrop.BackColor = SystemColors.ControlDark;
             string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             ZipFile zf = new ZipFile(FileList[0]);
             if (zf.Info != "")
@@ -51,10 +56,6 @@ namespace SE_Modz_Installer
                 foreach (string ze in zf.EntryFileNames)
                 {
                     lbxContents.Items.Add(ze);
-                    if (ze.Contains("Textures/GUI/Icons/"))
-                    {
-                        pbxIcon.ImageLocation = "C:\\Temp\\" + ze.Replace("/", "\\");
-                    }
                     if (ze.ToLower().Contains("definition.xml"))
                     {
                         XmlDocument xmdDesc = new XmlDocument();
@@ -106,7 +107,7 @@ namespace SE_Modz_Installer
             if (fbdGamePath.SelectedPath != "" && System.IO.Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
             {
                 pnlDrop.Enabled = true;
-                pnlDrop.BackColor = Color.ForestGreen;
+                pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Drag_Zip_File_Here;
                 txtGamePath.Text = fbdGamePath.SelectedPath;
                 strGamePath = txtGamePath.Text;
                 lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
@@ -120,7 +121,12 @@ namespace SE_Modz_Installer
 
         private void lnkSEMForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start("http://se-modz.forumotion.com/");
+            LaunchForum();
+        }
+
+        private void pbxIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            LaunchForum();
         }
     }
 }
