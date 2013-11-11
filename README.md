@@ -22,3 +22,28 @@ A simple installer for custom blocks made for Space Engineers
 
 DotNetZip Library provided by http://dotnetzip.codeplex.com/
 
+///////////////////////////////////////////////
+To package a block for use with this installer:
+///////////////////////////////////////////////
+
+Create a folder for your block. Copy the directory structure require under Content.
+For example if you have an icon texture create the folder Textures and under it GUI followed by Icons, and so on.
+Place your files in the appropriate directories after creating them.
+
+Create a new file called Description.xml. Paste the following text into your new xml file:
+
+<?xml version="1.0"?>
+
+<MyObjectBuilder_CubeBlockDefinitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<Definitions>
+	
+</Definitions>
+</MyObjectBuilder_CubeBlockDefinitions>
+
+Copy your block's <Definition> from CubeBlocks.sbc and paste inside the <Definitions> element.
+
+Save your Definition.xml file.
+
+Compress your block's folder as a zip archive. Test it by launching SE-Modz Installer and dragging
+t to the colored area. If your block fails to install, revisit the previous steps or come to
+http://se-modz.forumotion.com/ for help.
