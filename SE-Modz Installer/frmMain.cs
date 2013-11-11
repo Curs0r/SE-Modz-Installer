@@ -13,7 +13,8 @@ namespace SE_Modz_Installer
         const string userRoot = "HKEY_CURRENT_USER";
         const string subkey = "Software\\SE-Modz Installer";
         const string keyName = userRoot + "\\" + subkey;
-        const string strForumURL = "http://se-modz.forumotion.com/";
+        const string strForumURL = "http://se-modz.com/?q=forum";
+        const string strSiteURL = "http://se-modz.com";
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
@@ -24,9 +25,20 @@ namespace SE_Modz_Installer
             System.IO.File.Move("C:\\Temp\\" + ze.Replace("/", "\\"), f);
         }
 
-        private void LaunchForum()
+        private void LaunchSite(string s)
         {
-            System.Diagnostics.Process.Start(strForumURL);
+            switch (s)
+            {
+                case "forum":
+                    System.Diagnostics.Process.Start(strForumURL);
+                    break;
+                case "site":
+                    System.Diagnostics.Process.Start(strSiteURL);
+                    break;
+                default:
+                    break;
+            }
+            
         }
 
         public frmMain()
@@ -121,12 +133,12 @@ namespace SE_Modz_Installer
 
         private void lnkSEMForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LaunchForum();
+            LaunchSite("forum");
         }
 
         private void pbxIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            LaunchForum();
+            LaunchSite("site");
         }
     }
 }
