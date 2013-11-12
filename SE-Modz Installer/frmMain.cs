@@ -352,6 +352,7 @@ namespace SE_Modz_Installer
         private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("SE-Modz Block Installer by Curs0r\n\nThis software is distrubuted under the terms of the GPL v3 license."+
+            "\n\nArtwork by Suge." +
             "\n\nVisit http://curs0r.github.io/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
         }
 

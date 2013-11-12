@@ -63,7 +63,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Y70XNqkuvsPFyVIEjdk0jaQQWw0=</dsig:DigestValue>
+        <dsig:DigestValue>Y+95yurJtJ2Q265FCRuM/K1sfYg=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -73,7 +73,7 @@
         <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
       </dsig:Transforms>
       <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-      <dsig:DigestValue>Eh+84Iw2AHm4m4mZ3ovKtbIqgI4=</dsig:DigestValue>
+      <dsig:DigestValue>7kyqS0kPiQnOaHVBprk0v7VNSkY=</dsig:DigestValue>
     </hash>
   </file>
   <file name="SE-Modz Installer.exe.config" size="998" />
