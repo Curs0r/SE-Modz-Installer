@@ -170,6 +170,7 @@
             this.pnlDrop.TabIndex = 4;
             this.pnlDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragDrop);
             this.pnlDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragEnter);
+            this.pnlDrop.DragLeave += new System.EventHandler(this.pnlDrop_DragLeave);
             // 
             // frmMain
             // 

@@ -23,12 +23,8 @@ namespace SE_Modz_Installer
             File.Move("C:\\Temp\\" + ze.Replace("/", "\\"), f);
         }
 
-        public frmMain()
+        private void CheckPath()
         {
-            InitializeComponent();
-            valid = false;
-            strGamePath = Properties.Settings.Default.Path;
-            txtGamePath.Text = strGamePath;
             if (!Directory.Exists(strGamePath + "\\Content"))
             {
                 pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
@@ -38,8 +34,16 @@ namespace SE_Modz_Installer
             {
                 pnlDrop.Enabled = true;
                 pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.draghere;
-                lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
+                lblStatus.Text = "Drag a zipped block file to the colored area.";
             }
+        }
+        public frmMain()
+        {
+            InitializeComponent();
+            valid = false;
+            strGamePath = Properties.Settings.Default.Path;
+            txtGamePath.Text = strGamePath;
+            CheckPath();
             ckbUpdate.Checked = Properties.Settings.Default.AutoUpdate;
             if (ckbUpdate.Checked)
             {
@@ -86,6 +90,10 @@ namespace SE_Modz_Installer
                             if (!(DialogResult.OK == dr))
                             {
                                 doUpdate = false;
+                            }
+                            else
+                            {
+                                Application.Restart();
                             }
                         }
                         else
@@ -134,16 +142,20 @@ namespace SE_Modz_Installer
             }
             if (zf != null)
             {
-                foreach (string ze in zf.EntryFileNames)
+                if (zf.Info != null)
                 {
-                    if (ze.ToLower().Contains("definition.xml"))
+                    foreach (string ze in zf.EntryFileNames)
                     {
-                        valid = true;
+                        if (ze.ToLower().Contains("definition.xml"))
+                        {
+                            valid = true;
+                        }
                     }
                 }
             }
             else
             {
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
                 lblStatus.Text = "The file appears to be incompatible with this installer.";
             }
             if (valid)
@@ -152,6 +164,7 @@ namespace SE_Modz_Installer
             }
             else
             {
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
                 lblStatus.Text = "The file appears to be incompatible with this installer.";
             }
         }
@@ -213,14 +226,15 @@ namespace SE_Modz_Installer
                     zf.ExtractAll("C:\\Temp", ExtractExistingFileAction.OverwriteSilently);
                     foreach (string ze in zf.EntryFileNames)
                     {
-                        lbxContents.Items.Add(ze);
                         if (ze.ToLower().Contains("definition.xml"))
                         {
                             XmlDocument xmdDesc = new XmlDocument();
                             xmdDesc.Load("C:\\Temp\\" + ze.Replace("/", "\\"));
                             XmlNode xndDef = xmdDesc.GetElementsByTagName("Definition").Item(0);
                             XmlDocument xmdCubeBlocks = new XmlDocument();
-                            System.IO.File.Copy(strGamePath + "\\Content\\Data\\CubeBlocks.sbc", strGamePath + "\\Content\\Data\\CubeBlocks_backup" + System.DateTime.Now.ToFileTimeUtc() + ".sbc", true);
+                            DateTime dtmNow = DateTime.Now;
+                            File.Copy(strGamePath + "\\Content\\Data\\CubeBlocks.sbc", strGamePath + "\\Content\\Data\\CubeBlocks_backup" + dtmNow.ToFileTimeUtc() + ".sbc", true);
+                            lbxContents.Items.Add("CubeBlocks.sbc backed up to " + "Data\\CubeBlocks_backup" + dtmNow.ToFileTimeUtc() + ".sbc");
                             xmdCubeBlocks.Load(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
                             XmlNode xndImport = xmdCubeBlocks.ImportNode(xndDef, true);
                             bool exists = false;
@@ -237,35 +251,53 @@ namespace SE_Modz_Installer
                             {
                                 xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).AppendChild(xndImport);
                                 xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                                lblStatus.Text = "CubeBlocks.sbc Modified.";
+                                lbxContents.Items.Add("CubeBlocks.sbc Modified.");
                             }
                             else
                             {
                                 xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                                lblStatus.Text = "CubeBlocks.sbc updated.";
+                                lbxContents.Items.Add("CubeBlocks.sbc updated.");
                             }
                         }
                         else if (ze.ToLower().Contains("textures") && ze.ToLower().EndsWith(".dds"))
                         {
                             FMove(ze);
+                            lbxContents.Items.Add(ze.Substring(ze.LastIndexOf("/") + 1) + " copied to " + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\") + ".");
                         }
                         else if (ze.ToLower().Contains("models") && ze.ToLower().EndsWith(".mwm"))
                         {
                             FMove(ze);
+                            lbxContents.Items.Add(ze.Substring(ze.LastIndexOf("/") + 1) + " copied to " + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\") + ".");
                         }
                     }
                     if (Directory.Exists("C:\\Temp\\" + zf[0].FileName.Replace("/", "")))
                     {
                         Directory.Delete("C:\\Temp\\" + zf[0].FileName.Replace("/", ""), true);
+                        lbxContents.Items.Add("Temporary files removed.");
                     }
                 }
-                lblStatus.Text = zf.Info;
+                lbxContents.Items.Add("Installation complete.");
+                lblStatus.Text = "Installed " + zf.Info;
             }
             else
             {
                 lblStatus.Text = "Unable to install, the archive is invalid.";
+                System.Timers.Timer tmrReset = new System.Timers.Timer(2500);
+                tmrReset.Elapsed += new System.Timers.ElapsedEventHandler(tmrReset_Elapsed);
+                tmrReset.Enabled = true;
+                tmrReset.AutoReset = false;
             }
             valid = false;
+        }
+
+        void tmrReset_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
+        {
+            CheckPath();
+        }
+
+        private void pnlDrop_DragLeave(object sender, EventArgs e)
+        {
+            CheckPath();
         }
 
     }

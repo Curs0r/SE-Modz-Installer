@@ -1,7 +1,7 @@
 Change log for SE-Modz Block Installer
 Maintainer: Curs0r
 
-11/11/2103 - Version 1.0.1 builds 42-53
+11/11/2103 - Version 1.0.1 builds 42-55
 
 Introduction of the change log.
 
@@ -12,3 +12,9 @@ Better validation of block archives
 Changelog link placed on main form
 
 Improved archive dropping functionality
+
+Cleaned up archive validation messages
+
+Improved graphics for drop area
+
+Improved readability of file action output
