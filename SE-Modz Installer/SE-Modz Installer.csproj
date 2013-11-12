@@ -31,7 +31,7 @@
     <ProductName>SE-Modz Installer</ProductName>
     <PublisherName>SE-Modz</PublisherName>
     <MinimumRequiredVersion>1.0.1.52</MinimumRequiredVersion>
-    <ApplicationRevision>56</ApplicationRevision>
+    <ApplicationRevision>57</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -185,6 +185,10 @@
     <None Include="Resources\Folder Graphic.png" />
     <None Include="Resources\Drag Zip File Here1.png" />
     <None Include="Resources\Drag Zip Here.png" />
+    <None Include="Resources\invpath.bmp" />
+    <None Include="Resources\Invalid Installation Path.png" />
+    <None Include="Resources\Invalid File.png" />
+    <None Include="Resources\Drop File.png" />
     <Content Include="SEMI_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

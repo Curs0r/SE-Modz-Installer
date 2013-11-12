@@ -10,7 +10,7 @@
     <framework targetVersion="4.0" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="SE-Modz Installer.exe.manifest" size="5247">
+    <dependentAssembly dependencyType="install" codebase="SE-Modz Installer.exe.manifest" size="5248">
       <assemblyIdentity name="SE-Modz Installer.exe" version="1.0.1.56" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="x86" type="win32" />
     </dependentAssembly>
   </dependency>

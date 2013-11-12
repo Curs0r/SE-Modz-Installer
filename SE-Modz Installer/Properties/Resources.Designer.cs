@@ -60,13 +60,6 @@ namespace SE_Modz_Installer.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap disabled {
-            get {
-                object obj = ResourceManager.GetObject("disabled", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
         internal static System.Drawing.Bitmap draghere {
             get {
                 object obj = ResourceManager.GetObject("draghere", resourceCulture);
@@ -77,6 +70,27 @@ namespace SE_Modz_Installer.Properties {
         internal static System.Drawing.Bitmap foldergraphic {
             get {
                 object obj = ResourceManager.GetObject("foldergraphic", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap invfile {
+            get {
+                object obj = ResourceManager.GetObject("invfile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap invpath {
+            get {
+                object obj = ResourceManager.GetObject("invpath", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap okfile {
+            get {
+                object obj = ResourceManager.GetObject("okfile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

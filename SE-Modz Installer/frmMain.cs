@@ -27,7 +27,7 @@ namespace SE_Modz_Installer
         {
             if (!Directory.Exists(strGamePath + "\\Content"))
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invpath;
                 lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
             }
             else
@@ -155,16 +155,17 @@ namespace SE_Modz_Installer
             }
             else
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
                 lblStatus.Text = "The file appears to be incompatible with this installer.";
             }
             if (valid)
             {
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.okfile;
                 lblStatus.Text = zf.Info;
             }
             else
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
                 lblStatus.Text = "The file appears to be incompatible with this installer.";
             }
         }
@@ -215,6 +216,9 @@ namespace SE_Modz_Installer
 
         private void pnlDrop_DragDrop(object sender, DragEventArgs e)
         {
+            System.Timers.Timer tmrReset = new System.Timers.Timer(2500);
+            tmrReset.Elapsed += new System.Timers.ElapsedEventHandler(tmrReset_Elapsed);
+            tmrReset.AutoReset = false;
             if (valid)
             {
                 if (zf.Info != "")
@@ -278,14 +282,12 @@ namespace SE_Modz_Installer
                 }
                 lbxContents.Items.Add("Installation complete.");
                 lblStatus.Text = "Installed " + zf.Info;
+                tmrReset.Enabled = true;
             }
             else
             {
                 lblStatus.Text = "Unable to install, the archive is invalid.";
-                System.Timers.Timer tmrReset = new System.Timers.Timer(2500);
-                tmrReset.Elapsed += new System.Timers.ElapsedEventHandler(tmrReset_Elapsed);
                 tmrReset.Enabled = true;
-                tmrReset.AutoReset = false;
             }
             valid = false;
         }
