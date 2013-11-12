@@ -14,7 +14,21 @@ namespace SE_Modz_Installer
         public ZipFile zf;
         public bool valid,uda;
         System.Timers.Timer tmrUpdate = new System.Timers.Timer(3600000);
-        StreamWriter log =  File.CreateText(Application.LocalUserAppDataPath + "semi-log" + DateTime.Today.ToFileTimeUtc() + ".txt");
+        string strTempDir = Application.UserAppDataPath + "\\Temp\\";
+        StreamWriter log =  File.CreateText(Application.UserAppDataPath + "semi-log" + DateTime.Today.ToFileTimeUtc() + ".txt");
+
+        private void BadFile()
+        {
+            pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
+            lblStatus.Text = "The file appears to be incompatible with this installer.";
+        }
+
+        private void BadFolder()
+        {
+            pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invpath;
+            lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
+        }
+
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
@@ -22,15 +36,15 @@ namespace SE_Modz_Installer
             {
                 File.Delete(f);
             }
-            File.Move("C:\\Temp\\" + ze.Replace("/", "\\"), f);
+            File.Move(strTempDir + ze.Replace("/", "\\"), f);
+            lbxContents.Items.Add(ze.Substring(ze.LastIndexOf("/") + 1) + " copied to " + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\") + ".");
         }
 
         private void CheckPath()
         {
             if (!Directory.Exists(strGamePath + "\\Content"))
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invpath;
-                lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
+                BadFolder();
             }
             else
             {
@@ -125,22 +139,22 @@ namespace SE_Modz_Installer
 
         public frmMain()
         {
-                InitializeComponent();
-                log.AutoFlush = true;
-                valid = false;
-                tmrUpdate.Elapsed += new System.Timers.ElapsedEventHandler(tmrUpdate_Elapsed);
-                tmrUpdate.AutoReset = true;
-                strGamePath = Properties.Settings.Default.Path;
-                txtGamePath.Text = strGamePath;
-                CheckPath();
-                if (Properties.Settings.Default.AutoUpdate)
+            InitializeComponent();
+            log.AutoFlush = true;
+            valid = false;
+            tmrUpdate.Elapsed += new System.Timers.ElapsedEventHandler(tmrUpdate_Elapsed);
+            tmrUpdate.AutoReset = true;
+            strGamePath = Properties.Settings.Default.Path;
+            txtGamePath.Text = strGamePath;
+            CheckPath();
+            if (Properties.Settings.Default.AutoUpdate)
+            {
+                UpdateCheck();
+                if (!uda)
                 {
-                    UpdateCheck();
-                    if (!uda)
-                    {
-                        tmrUpdate.Enabled = true;
-                    }
+                    tmrUpdate.Enabled = true;
                 }
+            }
         }
 
         void tmrUpdate_Elapsed(object sender, EventArgs e)
@@ -177,14 +191,12 @@ namespace SE_Modz_Installer
                 }
                 else
                 {
-                    pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
-                    lblStatus.Text = "The file appears to be incompatible with this installer.";
+                    BadFile();
                 }
             }
             else
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
-                lblStatus.Text = "The file appears to be incompatible with this installer.";
+                BadFile();
             }
             if (valid)
             {
@@ -193,8 +205,7 @@ namespace SE_Modz_Installer
             }
             else
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
-                lblStatus.Text = "The file appears to be incompatible with this installer.";
+                BadFile();
             }
         }
 
@@ -214,7 +225,7 @@ namespace SE_Modz_Installer
             }
             else if (fbdGamePath.SelectedPath != "" && !Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
             {
-                lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
+                BadFolder();
             }
         }
 
@@ -264,13 +275,13 @@ namespace SE_Modz_Installer
                     lblStatus.Text = zf.Info;
                     string s = zf.Name.Substring(zf.Name.LastIndexOf("\\") + 1);
                     s = s.Substring(0, s.Length - 4);
-                    zf.ExtractAll("C:\\Temp", ExtractExistingFileAction.OverwriteSilently);
+                    zf.ExtractAll(strTempDir, ExtractExistingFileAction.OverwriteSilently);
                     foreach (string ze in zf.EntryFileNames)
                     {
                         if (ze.ToLower().Contains("definition.xml"))
                         {
                             XmlDocument xmdDesc = new XmlDocument();
-                            xmdDesc.Load("C:\\Temp\\" + ze.Replace("/", "\\"));
+                            xmdDesc.Load(strTempDir + ze.Replace("/", "\\"));
                             XmlNode xndDef = xmdDesc.GetElementsByTagName("Definition").Item(0);
                             XmlDocument xmdCubeBlocks = new XmlDocument();
                             DateTime dtmNow = DateTime.Now;
@@ -303,17 +314,15 @@ namespace SE_Modz_Installer
                         else if (ze.ToLower().Contains("textures") && ze.ToLower().EndsWith(".dds"))
                         {
                             FMove(ze);
-                            lbxContents.Items.Add(ze.Substring(ze.LastIndexOf("/") + 1) + " copied to " + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\") + ".");
                         }
                         else if (ze.ToLower().Contains("models") && ze.ToLower().EndsWith(".mwm"))
                         {
                             FMove(ze);
-                            lbxContents.Items.Add(ze.Substring(ze.LastIndexOf("/") + 1) + " copied to " + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\") + ".");
                         }
                     }
-                    if (Directory.Exists("C:\\Temp\\" + zf[0].FileName.Replace("/", "")))
+                    if (Directory.Exists(strTempDir + zf[0].FileName.Replace("/", "")))
                     {
-                        Directory.Delete("C:\\Temp\\" + zf[0].FileName.Replace("/", ""), true);
+                        Directory.Delete(strTempDir + zf[0].FileName.Replace("/", ""), true);
                         lbxContents.Items.Add("Temporary files removed.");
                     }
                 }
@@ -338,6 +347,72 @@ namespace SE_Modz_Installer
         {
             CheckPath();
             valid = false;
+        }
+
+        private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            MessageBox.Show("SE-Modz Block Installer by Curs0r\nThis software is distrubuted under the terms of the GPL v3 license."+
+            "\n Visit https://github.com/Curs0r/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
+        }
+
+        private void pbxIcon_MouseEnter(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Click to open http://www.se-modz.com in your browser.";
+        }
+
+        private void pbxIcon_MouseLeave(object sender, EventArgs e)
+        {
+            CheckPath();
+        }
+
+        private void lnkSEMForum_MouseEnter(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Click to open http://www.se-modz.com/forum in your browser.";
+        }
+
+        private void lnkSEMForum_MouseLeave(object sender, EventArgs e)
+        {
+            CheckPath();
+        }
+
+        private void txtGamePath_MouseEnter(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Click to set the path to your Space Engineers game directory.";
+        }
+
+        private void txtGamePath_MouseLeave(object sender, EventArgs e)
+        {
+            CheckPath();
+        }
+
+        private void lnkChangeLog_MouseEnter(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Click to view this program's change log in your browser.";
+        }
+
+        private void lnkChangeLog_MouseLeave(object sender, EventArgs e)
+        {
+            CheckPath();
+        }
+
+        private void lnkAbout_MouseEnter(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Click to learn more about his program.";
+        }
+
+        private void lnkAbout_MouseLeave(object sender, EventArgs e)
+        {
+            CheckPath();
+        }
+
+        private void ckbUpdate_MouseEnter(object sender, EventArgs e)
+        {
+            lblStatus.Text = "Click to toggle automatic checks for updates.";
+        }
+
+        private void ckbUpdate_MouseLeave(object sender, EventArgs e)
+        {
+            CheckPath();
         }
 
     }

@@ -88,10 +88,43 @@ namespace SE_Modz_Installer.Properties {
             }
         }
         
+        internal static byte[] LICENSE {
+            get {
+                object obj = ResourceManager.GetObject("LICENSE", resourceCulture);
+                return ((byte[])(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap okfile {
             get {
                 object obj = ResourceManager.GetObject("okfile", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ///////////////////////////////////////////////
+        ///To package a block for use with this installer:
+        //////////////////////////////////////////////////
+        ///
+        ///Create a folder for your block. Copy the directory structure required under Content.
+        ///For example if you have an icon texture create the folder Textures and under it GUI followed by Icons, and so on.
+        ///Place your files in the appropriate directories after creating them.
+        ///
+        ///Create a new file called Description.xml. Paste the following text into your new xml file:
+        ///
+        ///&lt;?xml  [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string Packaging {
+            get {
+                return ResourceManager.GetString("Packaging", resourceCulture);
+            }
+        }
+        
+        internal static byte[] README {
+            get {
+                object obj = ResourceManager.GetObject("README", resourceCulture);
+                return ((byte[])(obj));
             }
         }
         

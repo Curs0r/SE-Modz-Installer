@@ -132,6 +132,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\LICENSE" />
+    <None Include="Resources\README.md" />
     <None Include="SEMIKey.pfx" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +191,7 @@
     <None Include="Resources\Invalid Installation Path.png" />
     <None Include="Resources\Invalid File.png" />
     <None Include="Resources\Drop File.png" />
+    <None Include="Resources\Packaging.txt" />
     <Content Include="SEMI_Icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,6 +41,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbxIcon = new System.Windows.Forms.PictureBox();
             this.pnlDrop = new System.Windows.Forms.Panel();
+            this.lnkAbout = new System.Windows.Forms.LinkLabel();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIcon)).BeginInit();
@@ -65,6 +66,8 @@
             this.txtGamePath.TabIndex = 1;
             this.txtGamePath.Text = global::SE_Modz_Installer.Properties.Settings.Default.Path;
             this.txtGamePath.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtGamePath_MouseClick);
+            this.txtGamePath.MouseEnter += new System.EventHandler(this.txtGamePath_MouseEnter);
+            this.txtGamePath.MouseLeave += new System.EventHandler(this.txtGamePath_MouseLeave);
             // 
             // label2
             // 
@@ -110,6 +113,8 @@
             this.lnkSEMForum.TabStop = true;
             this.lnkSEMForum.Text = "SE-Modz Forum";
             this.lnkSEMForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSEMForum_LinkClicked);
+            this.lnkSEMForum.MouseEnter += new System.EventHandler(this.lnkSEMForum_MouseEnter);
+            this.lnkSEMForum.MouseLeave += new System.EventHandler(this.lnkSEMForum_MouseLeave);
             // 
             // lnkChangeLog
             // 
@@ -121,6 +126,8 @@
             this.lnkChangeLog.TabStop = true;
             this.lnkChangeLog.Text = "Change Log";
             this.lnkChangeLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChangeLog_LinkClicked);
+            this.lnkChangeLog.MouseEnter += new System.EventHandler(this.lnkChangeLog_MouseEnter);
+            this.lnkChangeLog.MouseLeave += new System.EventHandler(this.lnkChangeLog_MouseLeave);
             // 
             // ckbUpdate
             // 
@@ -135,6 +142,8 @@
             this.ckbUpdate.Text = "Auto Update";
             this.ckbUpdate.UseVisualStyleBackColor = true;
             this.ckbUpdate.CheckedChanged += new System.EventHandler(this.ckbUpdate_CheckedChanged);
+            this.ckbUpdate.MouseEnter += new System.EventHandler(this.ckbUpdate_MouseEnter);
+            this.ckbUpdate.MouseLeave += new System.EventHandler(this.ckbUpdate_MouseLeave);
             // 
             // pictureBox1
             // 
@@ -158,6 +167,8 @@
             this.pbxIcon.TabIndex = 6;
             this.pbxIcon.TabStop = false;
             this.pbxIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.pbxIcon_MouseClick);
+            this.pbxIcon.MouseEnter += new System.EventHandler(this.pbxIcon_MouseEnter);
+            this.pbxIcon.MouseLeave += new System.EventHandler(this.pbxIcon_MouseLeave);
             // 
             // pnlDrop
             // 
@@ -173,12 +184,26 @@
             this.pnlDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragEnter);
             this.pnlDrop.DragLeave += new System.EventHandler(this.pnlDrop_DragLeave);
             // 
+            // lnkAbout
+            // 
+            this.lnkAbout.AutoSize = true;
+            this.lnkAbout.Location = new System.Drawing.Point(339, 286);
+            this.lnkAbout.Name = "lnkAbout";
+            this.lnkAbout.Size = new System.Drawing.Size(35, 13);
+            this.lnkAbout.TabIndex = 11;
+            this.lnkAbout.TabStop = true;
+            this.lnkAbout.Text = "About";
+            this.lnkAbout.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkAbout_LinkClicked);
+            this.lnkAbout.MouseEnter += new System.EventHandler(this.lnkAbout_MouseEnter);
+            this.lnkAbout.MouseLeave += new System.EventHandler(this.lnkAbout_MouseLeave);
+            // 
             // frmMain
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 327);
+            this.Controls.Add(this.lnkAbout);
             this.Controls.Add(this.lnkChangeLog);
             this.Controls.Add(this.ckbUpdate);
             this.Controls.Add(this.pictureBox1);
@@ -219,6 +244,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox ckbUpdate;
         private System.Windows.Forms.LinkLabel lnkChangeLog;
+        private System.Windows.Forms.LinkLabel lnkAbout;
     }
 }
 
