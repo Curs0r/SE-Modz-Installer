@@ -39,6 +39,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbxIcon = new System.Windows.Forms.PictureBox();
             this.pnlDrop = new System.Windows.Forms.Panel();
+            this.ckbUpdate = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIcon)).BeginInit();
@@ -87,7 +88,6 @@
             this.lblStatus.AutoSize = false;
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(521, 17);
-            this.lblStatus.Spring = true;
             this.lblStatus.Text = "Idle";
             // 
             // lbxContents
@@ -95,7 +95,7 @@
             this.lbxContents.FormattingEnabled = true;
             this.lbxContents.Location = new System.Drawing.Point(9, 188);
             this.lbxContents.Name = "lbxContents";
-            this.lbxContents.Size = new System.Drawing.Size(515, 95);
+            this.lbxContents.Size = new System.Drawing.Size(521, 95);
             this.lbxContents.TabIndex = 5;
             // 
             // lnkSEMForum
@@ -138,11 +138,22 @@
             this.pnlDrop.BackColor = System.Drawing.Color.Maroon;
             this.pnlDrop.BackgroundImage = global::SE_Modz_Installer.Properties.Resources.Disabled_Graphic;
             this.pnlDrop.Enabled = false;
-            this.pnlDrop.Location = new System.Drawing.Point(9, 93);
+            this.pnlDrop.Location = new System.Drawing.Point(11, 94);
             this.pnlDrop.Name = "pnlDrop";
             this.pnlDrop.Size = new System.Drawing.Size(515, 88);
             this.pnlDrop.TabIndex = 4;
             this.pnlDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragEnter);
+            // 
+            // ckbUpdate
+            // 
+            this.ckbUpdate.AutoSize = true;
+            this.ckbUpdate.Location = new System.Drawing.Point(450, 285);
+            this.ckbUpdate.Name = "ckbUpdate";
+            this.ckbUpdate.Size = new System.Drawing.Size(86, 17);
+            this.ckbUpdate.TabIndex = 9;
+            this.ckbUpdate.Text = "Auto Update";
+            this.ckbUpdate.UseVisualStyleBackColor = true;
+            this.ckbUpdate.CheckedChanged += new System.EventHandler(this.ckbUpdate_CheckedChanged);
             // 
             // frmMain
             // 
@@ -150,6 +161,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 327);
+            this.Controls.Add(this.ckbUpdate);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lnkSEMForum);
             this.Controls.Add(this.pbxIcon);
@@ -185,6 +197,7 @@
         private System.Windows.Forms.PictureBox pbxIcon;
         private System.Windows.Forms.LinkLabel lnkSEMForum;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.CheckBox ckbUpdate;
     }
 }
 
