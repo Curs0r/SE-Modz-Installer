@@ -30,8 +30,8 @@
     <TargetCulture>en-US</TargetCulture>
     <ProductName>SE-Modz Installer</ProductName>
     <PublisherName>SE-Modz</PublisherName>
-    <MinimumRequiredVersion>1.0.1.42</MinimumRequiredVersion>
-    <ApplicationRevision>42</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.1.50</MinimumRequiredVersion>
+    <ApplicationRevision>51</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
