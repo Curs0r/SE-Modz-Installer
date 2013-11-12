@@ -162,14 +162,13 @@
             this.ckbUpdate.AutoSize = true;
             this.ckbUpdate.Checked = global::SE_Modz_Installer.Properties.Settings.Default.AutoUpdate;
             this.ckbUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbUpdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SE_Modz_Installer.Properties.Settings.Default, "Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ckbUpdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SE_Modz_Installer.Properties.Settings.Default, "AutoUpdate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ckbUpdate.Location = new System.Drawing.Point(450, 285);
             this.ckbUpdate.Name = "ckbUpdate";
             this.ckbUpdate.Size = new System.Drawing.Size(86, 17);
             this.ckbUpdate.TabIndex = 9;
             this.ckbUpdate.Text = "Auto Update";
             this.ckbUpdate.UseVisualStyleBackColor = true;
-            this.ckbUpdate.CheckedChanged += new System.EventHandler(this.ckbUpdate_CheckedChanged);
             // 
             // frmMain
             // 
