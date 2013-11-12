@@ -24,7 +24,7 @@ Last minute fix on validity check integrity
 
 
 //////
-11/12/2103 - Version 1.0.2 build 115
+11/12/2103 - Version 1.0.2 build 114
 //////
 
 Major improvements to the update process
