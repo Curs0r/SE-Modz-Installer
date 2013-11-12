@@ -28,3 +28,7 @@ Last minute fix on validity check integrity
 //////
 
 Major improvements to the update process
+
+Added status bar text updates for easier use
+
+Added an "about" link to the main window
