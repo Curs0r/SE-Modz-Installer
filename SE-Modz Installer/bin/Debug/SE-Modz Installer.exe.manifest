@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <asmv1:assembly manifestVersion="1.0" xsi:schemaLocation="urn:schemas-microsoft-com:asm.v1 assembly.adaptive.xsd" xmlns:asmv3="urn:schemas-microsoft-com:asm.v3" xmlns:dsig="http://www.w3.org/2000/09/xmldsig#" xmlns:co.v2="urn:schemas-microsoft-com:clickonce.v2" xmlns="urn:schemas-microsoft-com:asm.v2" xmlns:asmv1="urn:schemas-microsoft-com:asm.v1" xmlns:asmv2="urn:schemas-microsoft-com:asm.v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:co.v1="urn:schemas-microsoft-com:clickonce.v1">
-  <asmv1:assemblyIdentity version="1.0.1.56" name="SE-Modz Installer.exe" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="x86" type="win32" />
+  <asmv1:assemblyIdentity version="1.0.1.57" name="SE-Modz Installer.exe" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="x86" type="win32" />
   <description asmv2:iconFile="SEMI_Icon.ico" asmv2:publisher="SE-Modz" asmv2:product="SE-Modz Installer" asmv2:supportUrl="http://www.se-modz.com/" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
@@ -63,7 +63,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>hsD2GEB+kB0+uHCbnfbhNx4gDgk=</dsig:DigestValue>
+        <dsig:DigestValue>Mp/+DNe8tyRYBc6Byhtsu6Bz5+E=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

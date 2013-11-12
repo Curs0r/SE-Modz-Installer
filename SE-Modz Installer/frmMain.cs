@@ -152,6 +152,11 @@ namespace SE_Modz_Installer
                         }
                     }
                 }
+                else
+                {
+                    pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
+                    lblStatus.Text = "The file appears to be incompatible with this installer.";
+                }
             }
             else
             {
@@ -300,6 +305,7 @@ namespace SE_Modz_Installer
         private void pnlDrop_DragLeave(object sender, EventArgs e)
         {
             CheckPath();
+            valid = false;
         }
 
     }
