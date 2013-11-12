@@ -60,23 +60,23 @@ namespace SE_Modz_Installer.Properties {
             }
         }
         
-        internal static System.Drawing.Bitmap Disabled_Graphic {
+        internal static System.Drawing.Bitmap disabled {
             get {
-                object obj = ResourceManager.GetObject("Disabled Graphic", resourceCulture);
+                object obj = ResourceManager.GetObject("disabled", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Drag_Zip_File_Here {
+        internal static System.Drawing.Bitmap draghere {
             get {
-                object obj = ResourceManager.GetObject("Drag Zip File Here", resourceCulture);
+                object obj = ResourceManager.GetObject("draghere", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
         
-        internal static System.Drawing.Bitmap Folder_Graphic {
+        internal static System.Drawing.Bitmap foldergraphic {
             get {
-                object obj = ResourceManager.GetObject("Folder Graphic", resourceCulture);
+                object obj = ResourceManager.GetObject("foldergraphic", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

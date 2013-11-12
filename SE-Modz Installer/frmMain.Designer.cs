@@ -36,11 +36,11 @@
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbxContents = new System.Windows.Forms.ListBox();
             this.lnkSEMForum = new System.Windows.Forms.LinkLabel();
+            this.lnkChangeLog = new System.Windows.Forms.LinkLabel();
+            this.ckbUpdate = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbxIcon = new System.Windows.Forms.PictureBox();
             this.pnlDrop = new System.Windows.Forms.Panel();
-            this.lnkChangeLog = new System.Windows.Forms.LinkLabel();
-            this.ckbUpdate = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxIcon)).BeginInit();
@@ -111,9 +111,33 @@
             this.lnkSEMForum.Text = "SE-Modz Forum";
             this.lnkSEMForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSEMForum_LinkClicked);
             // 
+            // lnkChangeLog
+            // 
+            this.lnkChangeLog.AutoSize = true;
+            this.lnkChangeLog.Location = new System.Drawing.Point(380, 286);
+            this.lnkChangeLog.Name = "lnkChangeLog";
+            this.lnkChangeLog.Size = new System.Drawing.Size(65, 13);
+            this.lnkChangeLog.TabIndex = 10;
+            this.lnkChangeLog.TabStop = true;
+            this.lnkChangeLog.Text = "Change Log";
+            this.lnkChangeLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChangeLog_LinkClicked);
+            // 
+            // ckbUpdate
+            // 
+            this.ckbUpdate.AutoSize = true;
+            this.ckbUpdate.Checked = global::SE_Modz_Installer.Properties.Settings.Default.AutoUpdate;
+            this.ckbUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbUpdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SE_Modz_Installer.Properties.Settings.Default, "AutoUpdate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.ckbUpdate.Location = new System.Drawing.Point(450, 285);
+            this.ckbUpdate.Name = "ckbUpdate";
+            this.ckbUpdate.Size = new System.Drawing.Size(86, 17);
+            this.ckbUpdate.TabIndex = 9;
+            this.ckbUpdate.Text = "Auto Update";
+            this.ckbUpdate.UseVisualStyleBackColor = true;
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SE_Modz_Installer.Properties.Resources.Folder_Graphic;
+            this.pictureBox1.Image = global::SE_Modz_Installer.Properties.Resources.foldergraphic;
             this.pictureBox1.Location = new System.Drawing.Point(12, 45);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(38, 42);
@@ -138,37 +162,14 @@
             // 
             this.pnlDrop.AllowDrop = true;
             this.pnlDrop.BackColor = System.Drawing.Color.Maroon;
-            this.pnlDrop.BackgroundImage = global::SE_Modz_Installer.Properties.Resources.Disabled_Graphic;
+            this.pnlDrop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlDrop.BackgroundImage")));
             this.pnlDrop.Enabled = false;
             this.pnlDrop.Location = new System.Drawing.Point(11, 94);
             this.pnlDrop.Name = "pnlDrop";
             this.pnlDrop.Size = new System.Drawing.Size(515, 88);
             this.pnlDrop.TabIndex = 4;
+            this.pnlDrop.DragDrop += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragDrop);
             this.pnlDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragEnter);
-            // 
-            // lnkChangeLog
-            // 
-            this.lnkChangeLog.AutoSize = true;
-            this.lnkChangeLog.Location = new System.Drawing.Point(380, 286);
-            this.lnkChangeLog.Name = "lnkChangeLog";
-            this.lnkChangeLog.Size = new System.Drawing.Size(65, 13);
-            this.lnkChangeLog.TabIndex = 10;
-            this.lnkChangeLog.TabStop = true;
-            this.lnkChangeLog.Text = "Change Log";
-            this.lnkChangeLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChangeLog_LinkClicked);
-            // 
-            // ckbUpdate
-            // 
-            this.ckbUpdate.AutoSize = true;
-            this.ckbUpdate.Checked = global::SE_Modz_Installer.Properties.Settings.Default.AutoUpdate;
-            this.ckbUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckbUpdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SE_Modz_Installer.Properties.Settings.Default, "AutoUpdate", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
-            this.ckbUpdate.Location = new System.Drawing.Point(450, 285);
-            this.ckbUpdate.Name = "ckbUpdate";
-            this.ckbUpdate.Size = new System.Drawing.Size(86, 17);
-            this.ckbUpdate.TabIndex = 9;
-            this.ckbUpdate.Text = "Auto Update";
-            this.ckbUpdate.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 

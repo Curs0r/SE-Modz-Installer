@@ -11,7 +11,8 @@ namespace SE_Modz_Installer
     public partial class frmMain : Form
     {
         public string strGamePath;
-        
+        public ZipFile zf;
+        public bool valid;
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
@@ -25,17 +26,18 @@ namespace SE_Modz_Installer
         public frmMain()
         {
             InitializeComponent();
+            valid = false;
             strGamePath = Properties.Settings.Default.Path;
             txtGamePath.Text = strGamePath;
             if (!Directory.Exists(strGamePath + "\\Content"))
             {
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Disabled_Graphic;
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.disabled;
                 lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
             }
             else
             {
                 pnlDrop.Enabled = true;
-                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Drag_Zip_File_Here;
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.draghere;
                 lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
             }
             ckbUpdate.Checked = Properties.Settings.Default.AutoUpdate;
@@ -117,8 +119,10 @@ namespace SE_Modz_Installer
 
         private void pnlDrop_DragEnter(object sender, DragEventArgs e)
         {
-            ZipFile zf;
-            bool valid = false;
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                e.Effect = DragDropEffects.All;
+            }
             string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             try
             {
@@ -144,7 +148,62 @@ namespace SE_Modz_Installer
             }
             if (valid)
             {
+                lblStatus.Text = zf.Info;
+            }
+            else
+            {
+                lblStatus.Text = "The file appears to be incompatible with this installer.";
+            }
+        }
 
+        private void txtGamePath_MouseClick(object sender, MouseEventArgs e)
+        {
+            FolderBrowserDialog fbdGamePath = new FolderBrowserDialog();
+            fbdGamePath.RootFolder = System.Environment.SpecialFolder.DesktopDirectory;
+            fbdGamePath.ShowDialog();
+            if (fbdGamePath.SelectedPath != "" && Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
+            {
+                pnlDrop.Enabled = true;
+                pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.draghere;
+                txtGamePath.Text = fbdGamePath.SelectedPath;
+                strGamePath = txtGamePath.Text;
+                lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
+                Properties.Settings.Default.Path = strGamePath;
+            }
+            else if (fbdGamePath.SelectedPath != "" && !Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
+            {
+                lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
+            }
+        }
+
+        private void lnkSEMForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://www.se-modz.com/forum");
+        }
+
+        private void pbxIcon_MouseClick(object sender, MouseEventArgs e)
+        {
+            Process.Start("http://www.se-modz.com");
+        }
+
+        private void lnkChangeLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://www.se-modz.com/semi/install/Changelog.txt");
+        }
+
+        private void ckbUpdate_CheckedChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.AutoUpdate = ckbUpdate.Checked;
+        }
+        void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
+        private void pnlDrop_DragDrop(object sender, DragEventArgs e)
+        {
+            if (valid)
+            {
                 if (zf.Info != "")
                 {
                     lbxContents.Items.Clear();
@@ -204,53 +263,9 @@ namespace SE_Modz_Installer
             }
             else
             {
-                lblStatus.Text = "The file appears to be incompatible with this installer.";
+                lblStatus.Text = "Unable to install, the archive is invalid.";
             }
-
-        }
-
-        private void txtGamePath_MouseClick(object sender, MouseEventArgs e)
-        {
-            FolderBrowserDialog fbdGamePath = new FolderBrowserDialog();
-            fbdGamePath.RootFolder = System.Environment.SpecialFolder.DesktopDirectory;
-            fbdGamePath.ShowDialog();
-            if (fbdGamePath.SelectedPath != "" && Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
-            {
-                pnlDrop.Enabled = true;
-                pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Drag_Zip_File_Here;
-                txtGamePath.Text = fbdGamePath.SelectedPath;
-                strGamePath = txtGamePath.Text;
-                lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
-                Properties.Settings.Default.Path = strGamePath;
-            }
-            else if (fbdGamePath.SelectedPath != "" && !Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
-            {
-                lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
-            }
-        }
-
-        private void lnkSEMForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://www.se-modz.com/forum");
-        }
-
-        private void pbxIcon_MouseClick(object sender, MouseEventArgs e)
-        {
-            Process.Start("http://www.se-modz.com");
-        }
-
-        private void lnkChangeLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://www.se-modz.com/semi/install/Changelog.txt");
-        }
-
-        private void ckbUpdate_CheckedChanged(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.AutoUpdate = ckbUpdate.Checked;
-        }
-        void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
-        {
-            Properties.Settings.Default.Save();
+            valid = false;
         }
 
     }
