@@ -39,6 +39,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pbxIcon = new System.Windows.Forms.PictureBox();
             this.pnlDrop = new System.Windows.Forms.Panel();
+            this.lnkChangeLog = new System.Windows.Forms.LinkLabel();
             this.ckbUpdate = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -57,11 +58,12 @@
             // 
             // txtGamePath
             // 
+            this.txtGamePath.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::SE_Modz_Installer.Properties.Settings.Default, "Path", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.txtGamePath.Location = new System.Drawing.Point(56, 61);
             this.txtGamePath.Name = "txtGamePath";
             this.txtGamePath.Size = new System.Drawing.Size(389, 20);
             this.txtGamePath.TabIndex = 1;
-            this.txtGamePath.Text = "Click here to locate your game directory";
+            this.txtGamePath.Text = global::SE_Modz_Installer.Properties.Settings.Default.Path;
             this.txtGamePath.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtGamePath_MouseClick);
             // 
             // label2
@@ -144,9 +146,23 @@
             this.pnlDrop.TabIndex = 4;
             this.pnlDrop.DragEnter += new System.Windows.Forms.DragEventHandler(this.pnlDrop_DragEnter);
             // 
+            // lnkChangeLog
+            // 
+            this.lnkChangeLog.AutoSize = true;
+            this.lnkChangeLog.Location = new System.Drawing.Point(380, 286);
+            this.lnkChangeLog.Name = "lnkChangeLog";
+            this.lnkChangeLog.Size = new System.Drawing.Size(65, 13);
+            this.lnkChangeLog.TabIndex = 10;
+            this.lnkChangeLog.TabStop = true;
+            this.lnkChangeLog.Text = "Change Log";
+            this.lnkChangeLog.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkChangeLog_LinkClicked);
+            // 
             // ckbUpdate
             // 
             this.ckbUpdate.AutoSize = true;
+            this.ckbUpdate.Checked = global::SE_Modz_Installer.Properties.Settings.Default.AutoUpdate;
+            this.ckbUpdate.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckbUpdate.DataBindings.Add(new System.Windows.Forms.Binding("Checked", global::SE_Modz_Installer.Properties.Settings.Default, "Checked", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
             this.ckbUpdate.Location = new System.Drawing.Point(450, 285);
             this.ckbUpdate.Name = "ckbUpdate";
             this.ckbUpdate.Size = new System.Drawing.Size(86, 17);
@@ -161,6 +177,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(536, 327);
+            this.Controls.Add(this.lnkChangeLog);
             this.Controls.Add(this.ckbUpdate);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.lnkSEMForum);
@@ -176,6 +193,7 @@
             this.MaximizeBox = false;
             this.Name = "frmMain";
             this.Text = "SE-Modz";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmMain_FormClosing);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -198,6 +216,7 @@
         private System.Windows.Forms.LinkLabel lnkSEMForum;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox ckbUpdate;
+        private System.Windows.Forms.LinkLabel lnkChangeLog;
     }
 }
 

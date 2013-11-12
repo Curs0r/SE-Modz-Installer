@@ -1,63 +1,44 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Deployment.Application;
+using System.Diagnostics;
+using System.IO;
 using System.Windows.Forms;
 using System.Xml;
-using System.Xml.XPath;
 using Ionic.Zip;
-using Microsoft.Win32;
-using System.Deployment.Application;
-using System;
 
 namespace SE_Modz_Installer
 {
     public partial class frmMain : Form
     {
         public string strGamePath;
-        const string userRoot = "HKEY_CURRENT_USER";
-        const string subkey = "Software\\SE-Modz Installer";
-        const string keyName = userRoot + "\\" + subkey;
-        const string strForumURL = "http://se-modz.com/?q=forum";
-        const string strSiteURL = "http://se-modz.com";
+        
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
-            if (System.IO.File.Exists(f))
+            if (File.Exists(f))
             {
-                System.IO.File.Delete(f);
+                File.Delete(f);
             }
-            System.IO.File.Move("C:\\Temp\\" + ze.Replace("/", "\\"), f);
-        }
-
-        private void LaunchSite(string s)
-        {
-            switch (s)
-            {
-                case "forum":
-                    System.Diagnostics.Process.Start(strForumURL);
-                    break;
-                case "site":
-                    System.Diagnostics.Process.Start(strSiteURL);
-                    break;
-                default:
-                    break;
-            }
-            
+            File.Move("C:\\Temp\\" + ze.Replace("/", "\\"), f);
         }
 
         public frmMain()
         {
             InitializeComponent();
-            strGamePath = Registry.GetValue(keyName, "Game Path", "Click here to locate your game directory") as string;
+            strGamePath = Properties.Settings.Default.Path;
             txtGamePath.Text = strGamePath;
-            if (strGamePath != "Click here to locate your game directory")
+            if (!Directory.Exists(strGamePath + "\\Content"))
+            {
+                pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Disabled_Graphic;
+                lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
+            }
+            else
             {
                 pnlDrop.Enabled = true;
                 pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Drag_Zip_File_Here;
                 lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
             }
-            if (Registry.GetValue(keyName, "Auto Update", "True") as string == "True")
-            {
-                ckbUpdate.Checked = true;
-            }
+            ckbUpdate.Checked = Properties.Settings.Default.AutoUpdate;
             if (ckbUpdate.Checked)
             {
                 UpdateCheckInfo info = null;
@@ -68,7 +49,7 @@ namespace SE_Modz_Installer
                 }
                 catch (InvalidDeploymentException ide)
                 {
-                    lblStatus.Text = "Unable to auto-update";
+                    lblStatus.Text = "Unable to auto-update. " + ide.Message;
                     ad = null;
                 }
                 if (ad != null)
@@ -136,59 +117,96 @@ namespace SE_Modz_Installer
 
         private void pnlDrop_DragEnter(object sender, DragEventArgs e)
         {
-            lbxContents.Items.Clear();
+            ZipFile zf;
+            bool valid = false;
             string[] FileList = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            ZipFile zf = new ZipFile(FileList[0]);
-            if (zf.Info != "")
+            try
             {
-                zf.ExtractAll("C:\\Temp",ExtractExistingFileAction.OverwriteSilently);
-                lblStatus.Text = zf.Info;
-                string s = zf.Name.Substring(zf.Name.LastIndexOf("\\") + 1);
-                s = s.Substring(0, s.Length - 4);
+                zf = new ZipFile(FileList[0]);
+            }
+            catch
+            {
+                zf = null;
+            }
+            if (zf != null)
+            {
                 foreach (string ze in zf.EntryFileNames)
                 {
-                    lbxContents.Items.Add(ze);
                     if (ze.ToLower().Contains("definition.xml"))
                     {
-                        XmlDocument xmdDesc = new XmlDocument();
-                        xmdDesc.Load("C:\\Temp\\" + ze.Replace("/", "\\"));
-                        XmlNode xndDef = xmdDesc.GetElementsByTagName("Definition").Item(0);
-                        XmlDocument xmdCubeBlocks = new XmlDocument();
-                        System.IO.File.Copy(strGamePath + "\\Content\\Data\\CubeBlocks.sbc", strGamePath + "\\Content\\Data\\CubeBlocks_backup"+ System.DateTime.Now.ToFileTimeUtc() +".sbc",true);
-                        xmdCubeBlocks.Load(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                        XmlNode xndImport = xmdCubeBlocks.ImportNode(xndDef,true);
-                        bool exists = false;
-                        foreach (XmlNode xndN in xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ChildNodes)
-                        {
-                            if (xndN.ChildNodes.Item(1).InnerText == xndDef.ChildNodes.Item(1).InnerText &&
-                                xndN.FirstChild.ChildNodes.Item(1).InnerText == xndDef.FirstChild.ChildNodes.Item(1).InnerText)
-                            {
-                                exists = true;
-                                xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ReplaceChild(xndImport, xndN);
-                            }
-                        }
-                        if (!exists)
-                        {
-                            xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).AppendChild(xndImport);
-                            xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                            lblStatus.Text = "CubeBlocks.sbc Modified.";
-                        }
-                        else
-                        {
-                            xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                            lblStatus.Text = "CubeBlocks.sbc updated.";
-                        }
-                    }
-                    else if (ze.ToLower().Contains("textures") && ze.ToLower().EndsWith(".dds"))
-                    {
-                        FMove(ze);
-                    }
-                    else if (ze.ToLower().Contains("models") && ze.ToLower().EndsWith(".mwm"))
-                    {
-                        FMove(ze);
+                        valid = true;
                     }
                 }
             }
+            else
+            {
+                lblStatus.Text = "The file appears to be incompatible with this installer.";
+            }
+            if (valid)
+            {
+
+                if (zf.Info != "")
+                {
+                    lbxContents.Items.Clear();
+                    lblStatus.Text = zf.Info;
+                    string s = zf.Name.Substring(zf.Name.LastIndexOf("\\") + 1);
+                    s = s.Substring(0, s.Length - 4);
+                    zf.ExtractAll("C:\\Temp", ExtractExistingFileAction.OverwriteSilently);
+                    foreach (string ze in zf.EntryFileNames)
+                    {
+                        lbxContents.Items.Add(ze);
+                        if (ze.ToLower().Contains("definition.xml"))
+                        {
+                            XmlDocument xmdDesc = new XmlDocument();
+                            xmdDesc.Load("C:\\Temp\\" + ze.Replace("/", "\\"));
+                            XmlNode xndDef = xmdDesc.GetElementsByTagName("Definition").Item(0);
+                            XmlDocument xmdCubeBlocks = new XmlDocument();
+                            System.IO.File.Copy(strGamePath + "\\Content\\Data\\CubeBlocks.sbc", strGamePath + "\\Content\\Data\\CubeBlocks_backup" + System.DateTime.Now.ToFileTimeUtc() + ".sbc", true);
+                            xmdCubeBlocks.Load(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
+                            XmlNode xndImport = xmdCubeBlocks.ImportNode(xndDef, true);
+                            bool exists = false;
+                            foreach (XmlNode xndN in xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ChildNodes)
+                            {
+                                if (xndN.ChildNodes.Item(1).InnerText == xndDef.ChildNodes.Item(1).InnerText &&
+                                    xndN.FirstChild.ChildNodes.Item(1).InnerText == xndDef.FirstChild.ChildNodes.Item(1).InnerText)
+                                {
+                                    exists = true;
+                                    xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ReplaceChild(xndImport, xndN);
+                                }
+                            }
+                            if (!exists)
+                            {
+                                xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).AppendChild(xndImport);
+                                xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
+                                lblStatus.Text = "CubeBlocks.sbc Modified.";
+                            }
+                            else
+                            {
+                                xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
+                                lblStatus.Text = "CubeBlocks.sbc updated.";
+                            }
+                        }
+                        else if (ze.ToLower().Contains("textures") && ze.ToLower().EndsWith(".dds"))
+                        {
+                            FMove(ze);
+                        }
+                        else if (ze.ToLower().Contains("models") && ze.ToLower().EndsWith(".mwm"))
+                        {
+                            FMove(ze);
+                        }
+                    }
+                    if (Directory.Exists("C:\\Temp\\" + zf[0].FileName.Replace("/", "")))
+                    {
+                        Directory.Delete("C:\\Temp\\" + zf[0].FileName.Replace("/", ""), true);
+                    }
+                }
+                lblStatus.Text = zf.Info;
+            }
+            else
+            {
+                lblStatus.Text = "The file appears to be incompatible with this installer.";
+            }
+
         }
 
         private void txtGamePath_MouseClick(object sender, MouseEventArgs e)
@@ -196,16 +214,16 @@ namespace SE_Modz_Installer
             FolderBrowserDialog fbdGamePath = new FolderBrowserDialog();
             fbdGamePath.RootFolder = System.Environment.SpecialFolder.DesktopDirectory;
             fbdGamePath.ShowDialog();
-            if (fbdGamePath.SelectedPath != "" && System.IO.Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
+            if (fbdGamePath.SelectedPath != "" && Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
             {
                 pnlDrop.Enabled = true;
                 pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.Drag_Zip_File_Here;
                 txtGamePath.Text = fbdGamePath.SelectedPath;
                 strGamePath = txtGamePath.Text;
                 lblStatus.Text = "Install path set. Drag a zipped block file to the colored area.";
-                Registry.SetValue(keyName, "Game Path", strGamePath);
+                Properties.Settings.Default.Path = strGamePath;
             }
-            else if (fbdGamePath.SelectedPath != "" && !System.IO.Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
+            else if (fbdGamePath.SelectedPath != "" && !Directory.Exists(fbdGamePath.SelectedPath + "\\Content"))
             {
                 lblStatus.Text = "It seems you have selected an invalid folder. Please try again";
             }
@@ -213,17 +231,27 @@ namespace SE_Modz_Installer
 
         private void lnkSEMForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            LaunchSite("forum");
+            Process.Start("http://www.se-modz.com/forum");
         }
 
         private void pbxIcon_MouseClick(object sender, MouseEventArgs e)
         {
-            LaunchSite("site");
+            Process.Start("http://www.se-modz.com");
+        }
+
+        private void lnkChangeLog_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Process.Start("http://www.se-modz.com/semi/install/Changelog.txt");
         }
 
         private void ckbUpdate_CheckedChanged(object sender, EventArgs e)
         {
-            Registry.SetValue(keyName, "Auto Update", ckbUpdate.Checked.ToString());
+            Properties.Settings.Default.AutoUpdate = ckbUpdate.Checked;
         }
+        void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
+        {
+            Properties.Settings.Default.Save();
+        }
+
     }
 }

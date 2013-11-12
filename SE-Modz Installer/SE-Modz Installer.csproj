@@ -30,10 +30,10 @@
     <TargetCulture>en-US</TargetCulture>
     <ProductName>SE-Modz Installer</ProductName>
     <PublisherName>SE-Modz</PublisherName>
-    <MinimumRequiredVersion>1.0.1.35</MinimumRequiredVersion>
-    <ApplicationRevision>43</ApplicationRevision>
+    <MinimumRequiredVersion>1.0.1.42</MinimumRequiredVersion>
+    <ApplicationRevision>42</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
-    <UseApplicationTrust>false</UseApplicationTrust>
+    <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
@@ -80,6 +80,7 @@
   <PropertyGroup>
     <ApplicationIcon>SEMI_Icon.ico</ApplicationIcon>
   </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="Ionic.Zip">
       <HintPath>..\..\..\..\..\Downloads\DotNetZipLib-DevKit-v1.9\zip-v1.9\Release\Ionic.Zip.dll</HintPath>
@@ -120,7 +121,7 @@
     <None Include="app.config" />
     <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
-      <Generator>PublicSettingsSingleFileGenerator</Generator>
+      <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
