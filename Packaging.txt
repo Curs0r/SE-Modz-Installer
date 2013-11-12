@@ -22,4 +22,4 @@ Save your Definition.xml file.
 
 Compress your block's folder as a zip archive. Test it by launching SE-Modz Installer and dragging
 it to the colored area. If your block fails to install, revisit the previous steps or come to
-http://se-modz.forumotion.com/ for help.
+http://www.se-modz.com for help.
