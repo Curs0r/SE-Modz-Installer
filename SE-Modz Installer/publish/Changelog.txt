@@ -1,0 +1,9 @@
+Change log for SE-Modz Block Installer
+Maintainer: Curs0r
+
+11/11/2103 - Version 1.0.1 build 42
+
+Introduction of the change log.
+
+Optional automatic updating implemented.
+
