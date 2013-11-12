@@ -7,3 +7,7 @@ Introduction of the change log.
 
 Optional automatic updating implemented.
 
+Better validation of block archives
+
+Changelog link placed on main form
+
