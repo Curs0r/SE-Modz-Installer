@@ -352,7 +352,7 @@ namespace SE_Modz_Installer
         private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             MessageBox.Show("SE-Modz Block Installer by Curs0r\n\nThis software is distrubuted under the terms of the GPL v3 license."+
-            "\n\nVisit https://github.com/Curs0r/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
+            "\n\nVisit http://curs0r.github.io/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
         }
 
         private void pbxIcon_MouseEnter(object sender, EventArgs e)
