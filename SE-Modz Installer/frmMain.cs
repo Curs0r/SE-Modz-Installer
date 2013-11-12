@@ -13,7 +13,8 @@ namespace SE_Modz_Installer
         public string strGamePath;
         public ZipFile zf;
         public bool valid,uda;
-        System.Timers.Timer tmrUpdate = new System.Timers.Timer(60000);
+        System.Timers.Timer tmrUpdate = new System.Timers.Timer(3600000);
+        StreamWriter log =  File.CreateText(Application.LocalUserAppDataPath + "semi-log" + DateTime.Today.ToFileTimeUtc() + ".txt");
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
@@ -49,7 +50,7 @@ namespace SE_Modz_Installer
             }
             catch (InvalidDeploymentException ide)
             {
-                MessageBox.Show("Unable to auto-update. " + ide.Message);
+                log.WriteLine("Unable to auto-update. " + ide.Message);
                 ad = null;
             }
             if (ad != null)
@@ -60,17 +61,17 @@ namespace SE_Modz_Installer
                 }
                 catch (DeploymentDownloadException dde)
                 {
-                    MessageBox.Show("There was an error attempting to retrieve the file. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
+                    log.WriteLine("There was an error attempting to retrieve the file. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
                     return;
                 }
                 catch (InvalidDeploymentException ide)
                 {
-                    MessageBox.Show("Please reinstall. Error: " + ide.Message);
+                    log.WriteLine("Please reinstall. Error: " + ide.Message);
                     return;
                 }
                 catch (InvalidOperationException ioe)
                 {
-                    MessageBox.Show("The application cannot be updated." + ioe.Message);
+                    log.WriteLine("The application cannot be updated." + ioe.Message);
                     return;
                 }
                 if (info.UpdateAvailable)
@@ -91,7 +92,6 @@ namespace SE_Modz_Installer
                     }
                     else
                     {
-                        // Display a message that the app MUST reboot. Display the minimum required version.
                         MessageBox.Show("A very important update has been released that will convert you from the installed " +
                             "version to version " + info.MinimumRequiredVersion.ToString() +
                             ". The application will update and restart.",
@@ -126,6 +126,7 @@ namespace SE_Modz_Installer
         public frmMain()
         {
                 InitializeComponent();
+                log.AutoFlush = true;
                 valid = false;
                 tmrUpdate.Elapsed += new System.Timers.ElapsedEventHandler(tmrUpdate_Elapsed);
                 tmrUpdate.AutoReset = true;

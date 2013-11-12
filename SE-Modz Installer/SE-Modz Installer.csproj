@@ -24,8 +24,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://www.se-modz.com/semi/install/</InstallUrl>
-    <UpdateUrl>http://www.se-modz.com/semi/install/</UpdateUrl>
+    <InstallUrl>http://www.se-modz.com/semi/updates/</InstallUrl>
+    <UpdateUrl>http://www.se-modz.com/semi/updates/</UpdateUrl>
     <SupportUrl>http://www.se-modz.com</SupportUrl>
     <TargetCulture>en-US</TargetCulture>
     <ProductName>SE-Modz Installer</ProductName>
