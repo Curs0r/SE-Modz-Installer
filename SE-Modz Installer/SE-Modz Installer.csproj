@@ -31,7 +31,7 @@
     <ProductName>SE-Modz Installer</ProductName>
     <PublisherName>SE-Modz</PublisherName>
     <MinimumRequiredVersion>1.0.1.52</MinimumRequiredVersion>
-    <ApplicationRevision>52</ApplicationRevision>
+    <ApplicationRevision>53</ApplicationRevision>
     <ApplicationVersion>1.0.1.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
