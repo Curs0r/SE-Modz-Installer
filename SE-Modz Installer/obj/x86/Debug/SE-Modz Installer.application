@@ -3,7 +3,7 @@
   <assemblyIdentity name="SE-Modz Installer.application" version="1.0.2.115" publicKeyToken="0000000000000000" language="en-US" processorArchitecture="x86" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <description asmv2:publisher="SE-Modz" asmv2:product="SE-Modz Installer" asmv2:supportUrl="http://www.se-modz.com/" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" minimumRequiredVersion="1.0.2.0" co.v1:createDesktopShortcut="true">
-    <deploymentProvider codebase="http://www.se-modz.com/semi/updates/SE-Modz%20Installer.application" />
+    <deploymentProvider codebase="http://www.se-modz.com/semi/install/SE-Modz%20Installer.application" />
   </deployment>
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
     <framework targetVersion="4.0" profile="Client" supportedRuntime="4.0.30319" />

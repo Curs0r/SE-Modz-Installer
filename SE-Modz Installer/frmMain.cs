@@ -15,8 +15,7 @@ namespace SE_Modz_Installer
         public bool valid,uda;
         System.Timers.Timer tmrUpdate = new System.Timers.Timer(3600000);
         string strTempDir = Application.UserAppDataPath + "\\Temp\\";
-        StreamWriter log =  File.CreateText(Application.UserAppDataPath + "semi-log" + DateTime.Today.ToFileTimeUtc() + ".txt");
-
+        StreamWriter log = new StreamWriter(Application.UserAppDataPath + "semi-log" + DateTime.Today.ToFileTimeUtc() + ".txt", true);
         private void BadFile()
         {
             pnlDrop.BackgroundImage = pnlDrop.BackgroundImage = SE_Modz_Installer.Properties.Resources.invfile;
@@ -64,7 +63,7 @@ namespace SE_Modz_Installer
             }
             catch (InvalidDeploymentException ide)
             {
-                log.WriteLine("Unable to auto-update. " + ide.Message);
+                log.WriteLine(DateTime.Now.ToLocalTime().ToString() + ": Unable to auto-update. " + ide.Message);
                 ad = null;
             }
             if (ad != null)
@@ -75,17 +74,17 @@ namespace SE_Modz_Installer
                 }
                 catch (DeploymentDownloadException dde)
                 {
-                    log.WriteLine("There was an error attempting to retrieve the file. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
+                    log.WriteLine(DateTime.Now.ToLocalTime().ToString() + ": There was an error attempting to retrieve the file. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
                     return;
                 }
                 catch (InvalidDeploymentException ide)
                 {
-                    log.WriteLine("Please reinstall. Error: " + ide.Message);
+                    log.WriteLine(DateTime.Now.ToLocalTime().ToString() + ": Please reinstall. Error: " + ide.Message);
                     return;
                 }
                 catch (InvalidOperationException ioe)
                 {
-                    log.WriteLine("The application cannot be updated." + ioe.Message);
+                    log.WriteLine(DateTime.Now.ToLocalTime().ToString() + ": The application cannot be updated." + ioe.Message);
                     return;
                 }
                 if (info.UpdateAvailable)
@@ -259,6 +258,7 @@ namespace SE_Modz_Installer
         }
         void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
+            log.Close();
             Properties.Settings.Default.Save();
         }
 
@@ -351,8 +351,8 @@ namespace SE_Modz_Installer
 
         private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("SE-Modz Block Installer by Curs0r\nThis software is distrubuted under the terms of the GPL v3 license."+
-            "\n Visit https://github.com/Curs0r/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
+            MessageBox.Show("SE-Modz Block Installer by Curs0r\n\nThis software is distrubuted under the terms of the GPL v3 license."+
+            "\n\nVisit https://github.com/Curs0r/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
         }
 
         private void pbxIcon_MouseEnter(object sender, EventArgs e)

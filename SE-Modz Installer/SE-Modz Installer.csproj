@@ -24,14 +24,14 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>true</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <InstallUrl>http://www.se-modz.com/semi/updates/</InstallUrl>
-    <UpdateUrl>http://www.se-modz.com/semi/updates/</UpdateUrl>
+    <InstallUrl>http://www.se-modz.com/semi/install/</InstallUrl>
+    <UpdateUrl>http://www.se-modz.com/semi/install/</UpdateUrl>
     <SupportUrl>http://www.se-modz.com</SupportUrl>
     <TargetCulture>en-US</TargetCulture>
     <ProductName>SE-Modz Installer</ProductName>
     <PublisherName>SE-Modz</PublisherName>
     <MinimumRequiredVersion>1.0.2.0</MinimumRequiredVersion>
-    <ApplicationRevision>115</ApplicationRevision>
+    <ApplicationRevision>116</ApplicationRevision>
     <ApplicationVersion>1.0.2.%2a</ApplicationVersion>
     <UseApplicationTrust>true</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -139,22 +139,22 @@
   <ItemGroup>
     <PublishFile Include="SE-Modz Installer.exe.config">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="SE-Modz Installer.exe.manifest">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>ManifestEntryPoint</FileType>
     </PublishFile>
   </ItemGroup>

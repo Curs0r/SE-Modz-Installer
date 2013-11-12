@@ -24,7 +24,7 @@ Last minute fix on validity check integrity
 
 
 //////
-11/12/2103 - Version 1.0.2 build 114
+11/12/2103 - Version 1.0.2 builds 114-115
 //////
 
 Major improvements to the update process
@@ -32,3 +32,10 @@ Major improvements to the update process
 Added status bar text updates for easier use
 
 Added an "about" link to the main window
+
+Changed temp directory to userspace
+%USER%\AppData\Roaming\SE-Modz
+Rather than root C:\Temp
+
+Added update error logging in
+%USER%\AppData\Roaming\SE-Modz
