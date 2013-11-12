@@ -134,6 +134,7 @@
             this.ckbUpdate.TabIndex = 9;
             this.ckbUpdate.Text = "Auto Update";
             this.ckbUpdate.UseVisualStyleBackColor = true;
+            this.ckbUpdate.CheckedChanged += new System.EventHandler(this.ckbUpdate_CheckedChanged);
             // 
             // pictureBox1
             // 
@@ -162,7 +163,7 @@
             // 
             this.pnlDrop.AllowDrop = true;
             this.pnlDrop.BackColor = System.Drawing.Color.Maroon;
-            this.pnlDrop.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlDrop.BackgroundImage")));
+            this.pnlDrop.BackgroundImage = global::SE_Modz_Installer.Properties.Resources.invpath;
             this.pnlDrop.Enabled = false;
             this.pnlDrop.Location = new System.Drawing.Point(11, 94);
             this.pnlDrop.Name = "pnlDrop";

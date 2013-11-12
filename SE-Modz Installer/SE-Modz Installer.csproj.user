@@ -2,9 +2,9 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <PublishUrlHistory>publish\|C:\Program Files %28x86%29\SE-Modz Installer\</PublishUrlHistory>
-    <InstallUrlHistory>http://www.se-modz.com/semi/install/|\\SRVUS\Tools\SEMI\|\\SRVUS\Tools\</InstallUrlHistory>
+    <InstallUrlHistory>http://www.se-modz.com/semi/install/|http://www.se-modz.com/semi/updates/|http://www.se-modz.com/semi/update/|\\SRVUS\Tools\SEMI\|\\SRVUS\Tools\</InstallUrlHistory>
     <SupportUrlHistory>http://www.se-modz.com|http://se-modz.com/|http://se-modz.forumotion.com/</SupportUrlHistory>
-    <UpdateUrlHistory>http://www.se-modz.com/semi/install/|http://www.se-modz.com/semi/updates/</UpdateUrlHistory>
+    <UpdateUrlHistory>http://www.se-modz.com/semi/updates/|http://www.se-modz.com/semi/install/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

@@ -12,7 +12,8 @@ namespace SE_Modz_Installer
     {
         public string strGamePath;
         public ZipFile zf;
-        public bool valid;
+        public bool valid,uda;
+        System.Timers.Timer tmrUpdate = new System.Timers.Timer(60000);
         private void FMove(string ze)
         {
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
@@ -37,92 +38,113 @@ namespace SE_Modz_Installer
                 lblStatus.Text = "Drag a zipped block file to the colored area.";
             }
         }
-        public frmMain()
+
+        private void UpdateCheck()
         {
-            InitializeComponent();
-            valid = false;
-            strGamePath = Properties.Settings.Default.Path;
-            txtGamePath.Text = strGamePath;
-            CheckPath();
-            ckbUpdate.Checked = Properties.Settings.Default.AutoUpdate;
-            if (ckbUpdate.Checked)
+            UpdateCheckInfo info = null;
+            ApplicationDeployment ad;
+            try
             {
-                UpdateCheckInfo info = null;
-                ApplicationDeployment ad;
+                ad = ApplicationDeployment.CurrentDeployment;
+            }
+            catch (InvalidDeploymentException ide)
+            {
+                MessageBox.Show("Unable to auto-update. " + ide.Message);
+                ad = null;
+            }
+            if (ad != null)
+            {
                 try
                 {
-                    ad = ApplicationDeployment.CurrentDeployment;
+                    info = ad.CheckForDetailedUpdate();
+                }
+                catch (DeploymentDownloadException dde)
+                {
+                    MessageBox.Show("There was an error attempting to retrieve the file. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
+                    return;
                 }
                 catch (InvalidDeploymentException ide)
                 {
-                    lblStatus.Text = "Unable to auto-update. " + ide.Message;
-                    ad = null;
+                    MessageBox.Show("Please reinstall. Error: " + ide.Message);
+                    return;
                 }
-                if (ad != null)
+                catch (InvalidOperationException ioe)
                 {
-                    try
+                    MessageBox.Show("The application cannot be updated." + ioe.Message);
+                    return;
+                }
+                if (info.UpdateAvailable)
+                {
+                    uda = true;
+                    if (!info.IsUpdateRequired)
                     {
-                        info = ad.CheckForDetailedUpdate();
-
-                    }
-                    catch (DeploymentDownloadException dde)
-                    {
-                        MessageBox.Show("There was an error attempting to retrieve the file. \n\nPlease check your network connection, or try again later. Error: " + dde.Message);
-                        return;
-                    }
-                    catch (InvalidDeploymentException ide)
-                    {
-                        MessageBox.Show("Please reinstall. Error: " + ide.Message);
-                        return;
-                    }
-                    catch (InvalidOperationException ioe)
-                    {
-                        MessageBox.Show("The application cannot be updated." + ioe.Message);
-                        return;
-                    }
-                    if (info.UpdateAvailable)
-                    {
-                        Boolean doUpdate = true;
-
-                        if (!info.IsUpdateRequired)
+                        DialogResult dr = MessageBox.Show("A new update is availabe. Do you wish to update?", "New Update", MessageBoxButtons.OKCancel);
+                        if (dr == DialogResult.Cancel)
                         {
-                            DialogResult dr = MessageBox.Show("A new update is availabe. Do you wish to update?", "New Update", MessageBoxButtons.OKCancel);
-                            if (!(DialogResult.OK == dr))
-                            {
-                                doUpdate = false;
-                            }
-                            else
-                            {
-                                Application.Restart();
-                            }
+                            uda = false;
+                            tmrUpdate.Enabled = false;
                         }
                         else
                         {
-                            // Display a message that the app MUST reboot. Display the minimum required version.
-                            MessageBox.Show("A very important update has been released that will convert you from the installed " +
-                                "version to version " + info.MinimumRequiredVersion.ToString() +
-                                ". The application will update and restart.",
-                                "Important Update Available", MessageBoxButtons.OK,
-                                MessageBoxIcon.Information);
+                            UpdateMe();
                         }
-
-                        if (doUpdate)
-                        {
-                            try
-                            {
-                                ad.Update();
-                                MessageBox.Show("Update complete. The program will now restart.");
-                                Application.Restart();
-                            }
-                            catch (DeploymentDownloadException dde)
-                            {
-                                MessageBox.Show("Unable to update. \n\nPlease check your network connection, or try again later. Error: " + dde);
-                                return;
-                            }
-                        }
+                    }
+                    else
+                    {
+                        // Display a message that the app MUST reboot. Display the minimum required version.
+                        MessageBox.Show("A very important update has been released that will convert you from the installed " +
+                            "version to version " + info.MinimumRequiredVersion.ToString() +
+                            ". The application will update and restart.",
+                            "Important Update Available", MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
+                        UpdateMe();
                     }
                 }
             }
+        }
+
+        private void UpdateMe()
+        {
+            try
+            {
+                ApplicationDeployment.CurrentDeployment.UpdateAsync();
+                ApplicationDeployment.CurrentDeployment.UpdateCompleted += new System.ComponentModel.AsyncCompletedEventHandler(CurrentDeployment_UpdateCompleted);
+            }
+            catch (DeploymentDownloadException dde)
+            {
+                MessageBox.Show("Unable to update. \n\nPlease check your network connection, or try again later. Error: " + dde);
+                return;
+            }
+        }
+
+        void CurrentDeployment_UpdateCompleted(object sender, System.ComponentModel.AsyncCompletedEventArgs e)
+        {
+            MessageBox.Show("Update complete. The Application will now restart.");
+            Application.Restart();
+        }
+
+        public frmMain()
+        {
+                InitializeComponent();
+                valid = false;
+                tmrUpdate.Elapsed += new System.Timers.ElapsedEventHandler(tmrUpdate_Elapsed);
+                tmrUpdate.AutoReset = true;
+                strGamePath = Properties.Settings.Default.Path;
+                txtGamePath.Text = strGamePath;
+                CheckPath();
+                if (Properties.Settings.Default.AutoUpdate)
+                {
+                    UpdateCheck();
+                    if (!uda)
+                    {
+                        tmrUpdate.Enabled = true;
+                    }
+                }
+        }
+
+        void tmrUpdate_Elapsed(object sender, EventArgs e)
+        {
+            UpdateCheck();
         }
 
         private void pnlDrop_DragEnter(object sender, DragEventArgs e)
@@ -213,6 +235,15 @@ namespace SE_Modz_Installer
         private void ckbUpdate_CheckedChanged(object sender, EventArgs e)
         {
             Properties.Settings.Default.AutoUpdate = ckbUpdate.Checked;
+            if (ckbUpdate.Checked)
+            {
+                UpdateCheck();
+                tmrUpdate.Enabled = true;
+            }
+            else
+            {
+                tmrUpdate.Enabled = false;
+            }
         }
         void frmMain_FormClosing(object sender, System.Windows.Forms.FormClosingEventArgs e)
         {
