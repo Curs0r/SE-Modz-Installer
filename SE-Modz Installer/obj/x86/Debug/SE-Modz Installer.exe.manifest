@@ -4,7 +4,7 @@
   <description asmv2:iconFile="SEMI_Icon.ico" asmv2:publisher="SE-Modz" asmv2:product="SE-Modz Installer" asmv2:supportUrl="http://www.se-modz.com/" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <application />
   <entryPoint>
-    <assemblyIdentity name="SE-Modz Installer" version="1.0.0.0" publicKeyToken="1C760BB9AA39D121" language="neutral" processorArchitecture="x86" />
+    <assemblyIdentity name="SE-Modz Installer" version="1.0.0.0" publicKeyToken="F918783FF12ADD03" language="neutral" processorArchitecture="x86" />
     <commandLine file="SE-Modz Installer.exe" parameters="" />
   </entryPoint>
   <co.v1:useManifestForTrust xmlns="urn:schemas-microsoft-com:asm.v1" />
@@ -56,14 +56,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SE-Modz Installer.exe" size="1005056">
-      <assemblyIdentity name="SE-Modz Installer" version="1.0.0.0" publicKeyToken="1C760BB9AA39D121" language="neutral" processorArchitecture="x86" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="SE-Modz Installer.exe" size="1011712">
+      <assemblyIdentity name="SE-Modz Installer" version="1.0.0.0" publicKeyToken="F918783FF12ADD03" language="neutral" processorArchitecture="x86" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>Y+95yurJtJ2Q265FCRuM/K1sfYg=</dsig:DigestValue>
+        <dsig:DigestValue>6OsYxrWeqngJQcODBVCSt9ZTR8I=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

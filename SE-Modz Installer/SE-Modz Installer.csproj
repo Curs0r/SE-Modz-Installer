@@ -75,7 +75,7 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>SEMIKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>sembi.pfx</AssemblyOriginatorKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>SEMI_Icon.ico</ApplicationIcon>
@@ -134,27 +134,28 @@
     </Compile>
     <None Include="Resources\LICENSE" />
     <None Include="Resources\README.md" />
+    <None Include="sembi.pfx" />
     <None Include="SEMIKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <PublishFile Include="SE-Modz Installer.exe.config">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>File</FileType>
     </PublishFile>
     <PublishFile Include="SE-Modz Installer.exe.manifest">
       <Visible>False</Visible>
+      <PublishState>Auto</PublishState>
+      <IncludeHash>False</IncludeHash>
       <Group>
       </Group>
       <TargetPath>
       </TargetPath>
-      <PublishState>Auto</PublishState>
-      <IncludeHash>False</IncludeHash>
       <FileType>ManifestEntryPoint</FileType>
     </PublishFile>
   </ItemGroup>

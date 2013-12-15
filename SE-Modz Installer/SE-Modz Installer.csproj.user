@@ -4,7 +4,7 @@
     <PublishUrlHistory>publish\|C:\Program Files %28x86%29\SE-Modz Installer\</PublishUrlHistory>
     <InstallUrlHistory>http://www.se-modz.com/semi/install/|http://www.se-modz.com/semi/updates/|http://www.se-modz.com/semi/update/|\\SRVUS\Tools\SEMI\|\\SRVUS\Tools\</InstallUrlHistory>
     <SupportUrlHistory>http://www.se-modz.com|http://se-modz.com/|http://se-modz.forumotion.com/</SupportUrlHistory>
-    <UpdateUrlHistory>http://www.se-modz.com/semi/updates/|http://www.se-modz.com/semi/install/</UpdateUrlHistory>
+    <UpdateUrlHistory>http://www.se-modz.com/semi/install/|http://www.se-modz.com/semi/updates/</UpdateUrlHistory>
     <BootstrapperUrlHistory />
     <ErrorReportUrlHistory />
     <FallbackCulture>en-US</FallbackCulture>

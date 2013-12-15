@@ -6,7 +6,7 @@ Create a folder for your block. Copy the directory structure required under Cont
 For example if you have an icon texture create the folder Textures and under it GUI followed by Icons, and so on.
 Place your files in the appropriate directories after creating them.
 
-Create a new file called Description.xml. Paste the following text into your new xml file:
+Create a new file called Definition.xml. Paste the following text into your new xml file:
 
 <?xml version="1.0"?>
 

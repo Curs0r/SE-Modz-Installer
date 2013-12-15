@@ -35,7 +35,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
             this.lbxContents = new System.Windows.Forms.ListBox();
-            this.lnkSEMForum = new System.Windows.Forms.LinkLabel();
             this.lnkChangeLog = new System.Windows.Forms.LinkLabel();
             this.ckbUpdate = new System.Windows.Forms.CheckBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -103,19 +102,6 @@
             this.lbxContents.Size = new System.Drawing.Size(521, 95);
             this.lbxContents.TabIndex = 5;
             // 
-            // lnkSEMForum
-            // 
-            this.lnkSEMForum.AutoSize = true;
-            this.lnkSEMForum.Location = new System.Drawing.Point(454, 70);
-            this.lnkSEMForum.Name = "lnkSEMForum";
-            this.lnkSEMForum.Size = new System.Drawing.Size(82, 13);
-            this.lnkSEMForum.TabIndex = 7;
-            this.lnkSEMForum.TabStop = true;
-            this.lnkSEMForum.Text = "SE-Modz Forum";
-            this.lnkSEMForum.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lnkSEMForum_LinkClicked);
-            this.lnkSEMForum.MouseEnter += new System.EventHandler(this.lnkSEMForum_MouseEnter);
-            this.lnkSEMForum.MouseLeave += new System.EventHandler(this.lnkSEMForum_MouseLeave);
-            // 
             // lnkChangeLog
             // 
             this.lnkChangeLog.AutoSize = true;
@@ -160,7 +146,7 @@
             this.pbxIcon.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pbxIcon.Image = global::SE_Modz_Installer.Properties.Resources.SEMI_Icon;
             this.pbxIcon.InitialImage = global::SE_Modz_Installer.Properties.Resources.SEMI_Icon;
-            this.pbxIcon.Location = new System.Drawing.Point(457, -1);
+            this.pbxIcon.Location = new System.Drawing.Point(457, 13);
             this.pbxIcon.Name = "pbxIcon";
             this.pbxIcon.Size = new System.Drawing.Size(73, 68);
             this.pbxIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -207,7 +193,6 @@
             this.Controls.Add(this.lnkChangeLog);
             this.Controls.Add(this.ckbUpdate);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.lnkSEMForum);
             this.Controls.Add(this.pbxIcon);
             this.Controls.Add(this.lbxContents);
             this.Controls.Add(this.pnlDrop);
@@ -240,7 +225,6 @@
         private System.Windows.Forms.Panel pnlDrop;
         private System.Windows.Forms.ListBox lbxContents;
         private System.Windows.Forms.PictureBox pbxIcon;
-        private System.Windows.Forms.LinkLabel lnkSEMForum;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.CheckBox ckbUpdate;
         private System.Windows.Forms.LinkLabel lnkChangeLog;

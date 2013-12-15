@@ -24,7 +24,7 @@ Last minute fix on validity check integrity
 
 
 //////
-11/12/2103 - Version 1.0.2 builds 114-115
+11/12/2013 - Version 1.0.2 builds 114-115
 //////
 
 Major improvements to the update process
@@ -39,3 +39,9 @@ Rather than root C:\Temp
 
 Added update error logging in
 %USER%\AppData\Roaming\SE-Modz
+
+//////
+12/14/2013 - version 1.0.2 build 116
+//////
+
+Added support for creating directories

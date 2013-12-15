@@ -12,7 +12,7 @@ namespace SE_Modz_Installer
     {
         public string strGamePath;
         public ZipFile zf;
-        public bool valid,uda;
+        public bool valid, uda;
         System.Timers.Timer tmrUpdate = new System.Timers.Timer(3600000);
         string strTempDir = Application.UserAppDataPath + "\\Temp\\";
         StreamWriter log = new StreamWriter(Application.UserAppDataPath + "semi-log" + DateTime.Today.ToFileTimeUtc() + ".txt", true);
@@ -30,11 +30,42 @@ namespace SE_Modz_Installer
 
         private void FMove(string ze)
         {
+            /*
+             * First we need the path and filename string of the file's destination.
+             * We concatenate the game's path, with the Content subfolder, and then
+             * add the archive's path structure after stripping off the archive name.
+             */
             string f = strGamePath + "\\Content\\" + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\");
+            /*
+             * Now we need to check if that file exists, and delete the old version
+             * if it does.
+             */
             if (File.Exists(f))
             {
                 File.Delete(f);
             }
+            else
+            {
+                /*
+                 * Before moving the file, we must ensure the destination directory exists!
+                 * As in theory, we have already validated the game's path, we need only
+                 * verify subdirectories of the game's Content directory. If the file had
+                 * hit for the exists check then we would know the folders already exist.
+                */
+                string d = strGamePath + "\\Content\\";
+                foreach (string s in ze.Substring(ze.IndexOf("/") + 1, ze.LastIndexOf("/") - 1).Split('/'))
+                {
+                    d += s;
+                    if (!Directory.Exists(d))
+                    {
+                        Directory.CreateDirectory(d);
+                    }
+                    d += "\\";
+                }
+            }
+            /*
+             * Now we can move the file to its destination, and update the status bar.
+             */
             File.Move(strTempDir + ze.Replace("/", "\\"), f);
             lbxContents.Items.Add(ze.Substring(ze.LastIndexOf("/") + 1) + " copied to " + ze.Substring(ze.IndexOf("/") + 1).Replace("/", "\\") + ".");
         }
@@ -228,11 +259,6 @@ namespace SE_Modz_Installer
             }
         }
 
-        private void lnkSEMForum_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Process.Start("http://www.se-modz.com/forum");
-        }
-
         private void pbxIcon_MouseClick(object sender, MouseEventArgs e)
         {
             Process.Start("http://www.se-modz.com");
@@ -284,9 +310,12 @@ namespace SE_Modz_Installer
                             xmdDesc.Load(strTempDir + ze.Replace("/", "\\"));
                             XmlNode xndDef = xmdDesc.GetElementsByTagName("Definition").Item(0);
                             XmlDocument xmdCubeBlocks = new XmlDocument();
+                            // CubeBlocks Backup
                             DateTime dtmNow = DateTime.Now;
                             File.Copy(strGamePath + "\\Content\\Data\\CubeBlocks.sbc", strGamePath + "\\Content\\Data\\CubeBlocks_backup" + dtmNow.ToFileTimeUtc() + ".sbc", true);
                             lbxContents.Items.Add("CubeBlocks.sbc backed up to " + "Data\\CubeBlocks_backup" + dtmNow.ToFileTimeUtc() + ".sbc");
+                            //
+
                             xmdCubeBlocks.Load(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
                             XmlNode xndImport = xmdCubeBlocks.ImportNode(xndDef, true);
                             bool exists = false;
@@ -351,7 +380,7 @@ namespace SE_Modz_Installer
 
         private void lnkAbout_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show("SE-Modz Block Installer by Curs0r\n\nThis software is distrubuted under the terms of the GPL v3 license."+
+            MessageBox.Show("SE-Modz Block Installer by Curs0r\n\nThis software is distrubuted under the terms of the GPL v3 license." +
             "\n\nArtwork by Suge." +
             "\n\nVisit http://curs0r.github.io/SE-Modz-Installer to view the source and license for this program.", "About SE-Modz Block Installer");
         }
