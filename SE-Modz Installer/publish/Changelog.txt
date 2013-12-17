@@ -45,3 +45,11 @@ Added update error logging in
 //////
 
 Added support for creating directories
+
+//////
+12/17/2013 - version 1.0.2 build 117
+//////
+
+Support added for multiple blocks in a single archive
+
+(just add as many definitions as you want to Definition.xml)

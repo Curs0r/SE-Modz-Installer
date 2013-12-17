@@ -290,9 +290,19 @@ namespace SE_Modz_Installer
 
         private void pnlDrop_DragDrop(object sender, DragEventArgs e)
         {
+            // A timer is set here to reset the install conditions after the operation completes
             System.Timers.Timer tmrReset = new System.Timers.Timer(2500);
             tmrReset.Elapsed += new System.Timers.ElapsedEventHandler(tmrReset_Elapsed);
             tmrReset.AutoReset = false;
+            // Simple stuff there
+
+            /* So since on our dragenter we set the valid boolean to either true or false,
+             * we can check that value and if it's true, we can proceed to extract the zip's 
+             * contents to the temp directory. We then load definition.xml and copy/replace
+             * its values to the game's CubeBlocks.sbc (after backing it up). Finally we move
+             * the models and textures to their destinations as laid out in the zip's folder
+             * structure.
+            */
             if (valid)
             {
                 if (zf.Info != "")
@@ -306,38 +316,52 @@ namespace SE_Modz_Installer
                     {
                         if (ze.ToLower().Contains("definition.xml"))
                         {
+                            // First we load the zip's definition.xml
                             XmlDocument xmdDesc = new XmlDocument();
                             xmdDesc.Load(strTempDir + ze.Replace("/", "\\"));
-                            XmlNode xndDef = xmdDesc.GetElementsByTagName("Definition").Item(0);
-                            XmlDocument xmdCubeBlocks = new XmlDocument();
-                            // CubeBlocks Backup
+
+                            // Now we need the <Definition> nodes from that file
+                            XmlNodeList xndDefs = xmdDesc.GetElementsByTagName("Definition");
+
+                            // CubeBlocks.sbc Backup
                             DateTime dtmNow = DateTime.Now;
                             File.Copy(strGamePath + "\\Content\\Data\\CubeBlocks.sbc", strGamePath + "\\Content\\Data\\CubeBlocks_backup" + dtmNow.ToFileTimeUtc() + ".sbc", true);
                             lbxContents.Items.Add("CubeBlocks.sbc backed up to " + "Data\\CubeBlocks_backup" + dtmNow.ToFileTimeUtc() + ".sbc");
                             //
 
+                            // Now we need to load CubeBlocks.sbc to work with it.
+                            XmlDocument xmdCubeBlocks = new XmlDocument();
                             xmdCubeBlocks.Load(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                            XmlNode xndImport = xmdCubeBlocks.ImportNode(xndDef, true);
-                            bool exists = false;
-                            foreach (XmlNode xndN in xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ChildNodes)
+
+                            /* In this case we will just do a simple foreach on the definitions from
+                             * the zip file. We do another foreach within that to compare the current
+                             * node to be added, to the other nodes already in CubeBlocks.sbc. In this
+                             * manner we can ensure no duplicate subetypeid entries.
+                            */
+                            foreach (XmlNode xn in xndDefs)
                             {
-                                if (xndN.ChildNodes.Item(1).InnerText == xndDef.ChildNodes.Item(1).InnerText &&
-                                    xndN.FirstChild.ChildNodes.Item(1).InnerText == xndDef.FirstChild.ChildNodes.Item(1).InnerText)
+                                XmlNode xndImport = xmdCubeBlocks.ImportNode(xn, true);
+                                bool exists = false;
+                                foreach (XmlNode xndN in xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ChildNodes)
                                 {
-                                    exists = true;
-                                    xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ReplaceChild(xndImport, xndN);
+                                    if (xndN.ChildNodes.Item(1).InnerText == xn.ChildNodes.Item(1).InnerText &&
+                                        xndN.FirstChild.ChildNodes.Item(1).InnerText == xn.FirstChild.ChildNodes.Item(1).InnerText)
+                                    {
+                                        exists = true;
+                                        xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ReplaceChild(xndImport, xndN);
+                                    }
                                 }
-                            }
-                            if (!exists)
-                            {
-                                xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).AppendChild(xndImport);
-                                xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                                lbxContents.Items.Add("CubeBlocks.sbc Modified.");
-                            }
-                            else
-                            {
-                                xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                                lbxContents.Items.Add("CubeBlocks.sbc updated.");
+                                if (!exists)
+                                {
+                                    xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).AppendChild(xndImport);
+                                    xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
+                                    lbxContents.Items.Add("CubeBlocks.sbc Modified.");
+                                }
+                                else
+                                {
+                                    xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
+                                    lbxContents.Items.Add("CubeBlocks.sbc updated.");
+                                }
                             }
                         }
                         else if (ze.ToLower().Contains("textures") && ze.ToLower().EndsWith(".dds"))
@@ -393,11 +417,6 @@ namespace SE_Modz_Installer
         private void pbxIcon_MouseLeave(object sender, EventArgs e)
         {
             CheckPath();
-        }
-
-        private void lnkSEMForum_MouseEnter(object sender, EventArgs e)
-        {
-            lblStatus.Text = "Click to open http://www.se-modz.com/forum in your browser.";
         }
 
         private void lnkSEMForum_MouseLeave(object sender, EventArgs e)
