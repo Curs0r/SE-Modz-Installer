@@ -99,6 +99,7 @@
             this.lbxContents.FormattingEnabled = true;
             this.lbxContents.Location = new System.Drawing.Point(9, 188);
             this.lbxContents.Name = "lbxContents";
+            this.lbxContents.SelectionMode = System.Windows.Forms.SelectionMode.None;
             this.lbxContents.Size = new System.Drawing.Size(521, 95);
             this.lbxContents.TabIndex = 5;
             // 

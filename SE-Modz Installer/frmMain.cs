@@ -355,12 +355,12 @@ namespace SE_Modz_Installer
                                 {
                                     xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).AppendChild(xndImport);
                                     xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                                    lbxContents.Items.Add("CubeBlocks.sbc Modified.");
+                                    lbxContents.Items.Add("CubeBlocks.sbc Modified. Added: " + xndImport.ChildNodes.Item(1).InnerText + " definition.");
                                 }
                                 else
                                 {
                                     xmdCubeBlocks.Save(strGamePath + "\\Content\\Data\\CubeBlocks.sbc");
-                                    lbxContents.Items.Add("CubeBlocks.sbc updated.");
+                                    lbxContents.Items.Add("CubeBlocks.sbc updated. Modified: " + xndImport.ChildNodes.Item(1).InnerText + " definition.");
                                 }
                             }
                         }
