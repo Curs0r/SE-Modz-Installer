@@ -342,7 +342,7 @@ namespace SE_Modz_Installer
                             {
                                 XmlNode xndImport = xmdCubeBlocks.ImportNode(xn, true);
                                 bool exists = false;
-                                foreach (XmlNode xndN in xmdCubeBlocks.GetElementsByTagName("Definitions").Item(0).ChildNodes)
+                                foreach (XmlNode xndN in xmdCubeBlocks.GetElementsByTagName("Definition"))
                                 {
                                     if (xndN.ChildNodes.Item(1).InnerText == xn.ChildNodes.Item(1).InnerText &&
                                         xndN.FirstChild.ChildNodes.Item(1).InnerText == xn.FirstChild.ChildNodes.Item(1).InnerText)

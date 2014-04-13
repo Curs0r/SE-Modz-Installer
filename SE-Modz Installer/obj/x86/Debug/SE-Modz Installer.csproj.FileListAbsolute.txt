@@ -69,3 +69,17 @@ C:\Users\PorkStain\Desktop\semi\trunk\SE-Modz Installer\bin\Debug\SE-Modz Instal
 C:\Users\PorkStain\Desktop\semi\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.TrustInfo.xml
 C:\Users\PorkStain\Desktop\semi\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe.manifest
 C:\Users\PorkStain\Desktop\semi\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.application
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe.config
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.pdb
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.csprojResolveAssemblyReference.cache
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.frmMain.resources
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE_Modz_Installer.Properties.Resources.resources
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.csproj.GenerateResource.Cache
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe.manifest
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.application
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.exe
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\bin\Debug\SE-Modz Installer.pdb
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.TrustInfo.xml
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.exe.manifest
+C:\Users\Spiffnuts\Desktop\SEMI\trunk\SE-Modz Installer\obj\x86\Debug\SE-Modz Installer.application
